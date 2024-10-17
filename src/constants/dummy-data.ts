@@ -1,5 +1,5 @@
 import { generateFakeBook, generateFakeQuiz } from "@/lib/utils";
 
-const books = generateFakeBook(100);
+export const books = generateFakeBook(100);
 
-const quiz = generateFakeQuiz();
+export const quiz = generateFakeQuiz();

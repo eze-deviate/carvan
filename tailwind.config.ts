@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
     darkMode: ["class"],
@@ -9,7 +10,27 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily:{
+			sans:["Inter", ...fontFamily.sans],
+			oswald:["Oswald", ...fontFamily.sans]
+		},
   		colors: {
+			banner:"#F4F4F5",
+			brand:{
+				default: '#294122',
+				500:'#294122'
+			},
+			gray:{
+				50:'#F9FAFB',
+				200:'#EAECF0',
+				300:'#D0D5DD',
+				600: '#475467',
+				800: '#1D2939',
+				900: '#101828'
+			},
+			warning:{
+				400:'#FDB022'
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

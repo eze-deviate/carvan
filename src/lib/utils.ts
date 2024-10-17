@@ -11,9 +11,14 @@ export function generateFakeBook(n=100){
   for(let i=0; i<n; i++){
     let item = {
       title:faker.word.words({count:{min:2, max:3}}),
-      id:faker.database.mongodbObjectId(),
-      author: faker.person.firstName() + faker.person.lastName(),
+      _id:faker.database.mongodbObjectId(),
+      author: faker.person.firstName() + " " + faker.person.lastName(),
       price: faker.number.float({ multipleOf: 0.25, min: 0, max:10 }),
+      oldPrice: faker.number.float({ multipleOf: 0.25, min: 0, max:10 }),
+      rating:faker.number.float({multipleOf:0.5, min:0, max:5}),
+      reviews:faker.number.int({multipleOf:1, min:0, max:1000}),
+      // image:faker.image.url()
+      image:'/assets/images/book-image.webp'
     }
     books.push(item)
   }

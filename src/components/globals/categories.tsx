@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-const CustomBanner = ({ className, title }: Props) => {
+const Categories = ({ className, title }: Props) => {
   return (
     <section
       className={cn(
@@ -21,4 +21,4 @@ const CustomBanner = ({ className, title }: Props) => {
   );
 };
 
-export default CustomBanner;
+export default Categories;
