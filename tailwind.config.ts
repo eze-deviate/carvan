@@ -10,27 +10,37 @@ const config: Config = {
   ],
   theme: {
   	extend: {
-		fontFamily:{
-			sans:["Inter", ...fontFamily.sans],
-			oswald:["Oswald", ...fontFamily.sans]
-		},
+  		fontFamily: {
+  			sans: ["Inter", ...fontFamily.sans],
+  			oswald: ["Oswald", ...fontFamily.sans]
+  		},
   		colors: {
-			banner:"#F4F4F5",
-			brand:{
-				default: '#294122',
-				500:'#294122'
-			},
-			gray:{
-				50:'#F9FAFB',
-				200:'#EAECF0',
-				300:'#D0D5DD',
-				600: '#475467',
-				800: '#1D2939',
-				900: '#101828'
-			},
-			warning:{
-				400:'#FDB022'
-			},
+  			banner: '#F4F4F5',
+  			brand: {
+  				'50': '#F0F6EE',
+				'100': '#DEECDA',
+				'400':'#5B904B',
+  				'500': '#294122',
+				'700':'#22361C',
+  				default: '#294122'
+  			},
+  			gray: {
+  				'25': '#FCFCFD',
+  				'50': '#F9FAFB',
+				'100': '#F2F4F7',
+  				'200': '#EAECF0',
+  				'300': '#D0D5DD',
+				'400':'#98A2B3',
+  				'600': '#475467',
+  				'700': '#344054',
+  				'800': '#1D2939',
+  				'900': '#101828'
+  			},
+  			warning: {
+				100:'#FEF0C7',
+  				'400': '#FDB022',
+				'800':'#93370D',
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -76,7 +86,33 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		},
+		boxShadow:{
+			'custom-1': '0px 0px 0px 2px rgba(91, 144, 75, 0.1)',
+        	'custom-2': '0px 1px 2px 0px rgba(16, 24, 40, 0.1)',
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

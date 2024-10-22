@@ -1,8 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn, getAverageRating } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "../globals/custom-button";
 import { Button } from "../ui/button";
+import { Review } from "@/types";
 
 type Props = {
   className?: string;
@@ -11,18 +12,18 @@ type Props = {
     title: string;
     author: string;
     price: number;
-    rating: number;
-    reviews: any;
+    reviews: Review[];
     image: string;
   };
 };
 
 const BookListingCard = ({ className, book }: Props) => {
-  const { author, price, title, image, rating, reviews } = book;
+  const { author, price, title, image, reviews } = book;
+  const rating = getAverageRating(reviews);
   const [hovered, setHovered] = useState(false);
   return (
     <div className={cn("w-full flex flex-col h-[25.875rem]", className)}>
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden rounded-lg">
         <Image
           className="w-full object-contain"
           width={100}

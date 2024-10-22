@@ -9,6 +9,7 @@ import React, {
 import LeftArrow from "@public/assets/svgs/left-arrow.svg";
 import RightArrow from "@public/assets/svgs/right-arrow.svg";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { ui } from "@/constants";
 
 const books = [
   {
@@ -79,7 +80,11 @@ const CustomCarousel = ({ title, className, children }: Props) => {
     index >= currentIndex && index < currentIndex + visibleItems;
   return (
     <div
-      className={cn(`w-full flex flex-col items-stretch gap-y-5`, className)}
+      className={cn(
+        `w-full flex flex-col items-stretch gap-y-5`,
+        ui.layoutPadding,
+        className
+      )}
     >
       {title && (
         <div className="flex justify-between ">

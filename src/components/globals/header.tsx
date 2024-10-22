@@ -8,10 +8,14 @@ import Link from "next/link";
 import { Input } from "../ui/input";
 
 import UserAvatarDropDown from "../navigation/user-avatar-dropdown";
+import { cn } from "@/lib/utils";
 const Header = () => {
   return (
     <header
-      className={`flex w-full px-[6.375rem] py-[1.5rem] justify-between items-center bg-white shadow-md`}
+      className={cn(
+        `flex w-full py-[1.5rem] justify-between items-center bg-white shadow-md`,
+        ui.layoutPadding
+      )}
     >
       <div className="flex items-center gap-20">
         <div className="flex items-center">
@@ -27,6 +31,7 @@ const Header = () => {
           {navItems.map((item) => (
             <Link
               href={item.link}
+              key={item.text}
               className="text-base font-normal text-gray-800 px-4"
             >
               {item.text}

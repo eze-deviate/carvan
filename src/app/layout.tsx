@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ModalProvider from "@/providers/modal-provider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,10 @@ export default function RootLayout({
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       // className={inter.className}
       >
-        {children}
+        <ModalProvider>
+          {children}
+          {/* <Toaster /> */}
+        </ModalProvider>
       </body>
     </html>
   );

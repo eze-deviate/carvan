@@ -1,22 +1,25 @@
+import { categories, ui } from "@/constants";
 import { cn } from "@/lib/utils";
 import React from "react";
 
 type Props = {
-  title: string;
   className?: string;
 };
 
-const Categories = ({ className, title }: Props) => {
+const Categories = ({ className }: Props) => {
   return (
     <section
       className={cn(
-        "w-full text-center flex items-center justify-center bg-banner",
+        "w-full text-center flex bg-white py-3 gap-x-10",
+        ui.layoutPadding,
         className
       )}
     >
-      <p className="text-[4.313rem] text-black font-semibold leading-[6.037rem]">
-        {title}
-      </p>
+      {categories.map((cat, idx) => (
+        <p className="text-base text-gray-700 font-normal px-[0.625rem] py-2">
+          {cat.title}
+        </p>
+      ))}
     </section>
   );
 };

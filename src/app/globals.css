@@ -43,6 +43,9 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --star-size: 60px;
+    --star-color: #fff;
+    --star-background: #fc0;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -72,6 +75,18 @@ body {
   }
 }
 
+@layer utilities{
+  .btn{
+    @apply hover:bg-transparent;
+  }
+  .btn-primary {
+    @apply border-none bg-brand-500 text-white;
+  }
+  .btn-outline {
+    @apply bg-transparent border border-gray-200 text-gray-800 hover:bg-brand-100 hover:text-brand-500;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -80,3 +95,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+

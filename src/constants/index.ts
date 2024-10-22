@@ -20,18 +20,23 @@ export const icons = {
 }
 
 export const ui = {
-    layoutMargin:'mx-[7.5rem]',
-    layoutPadding:'px-[7.5rem]'
+    layoutMargin:'mx-[6.375rem]',
+    layoutPadding:'px-[6.375rem]',
+}
+
+// values are in rems
+export const uiValues = {
+    layoutMargin: '6.375rem'
 }
 
 export const categories = [
-    {'_id':faker.database.mongodbObjectId(), name:'Business'},
-    {'_id':faker.database.mongodbObjectId(), name:'Science'},
-    {'_id':faker.database.mongodbObjectId(), name:'Litrature & English'},
-    {'_id':faker.database.mongodbObjectId(), name:'Mathematics'},
-    {'_id':faker.database.mongodbObjectId(), name:'General Book'},
-    {'_id':faker.database.mongodbObjectId(), name:'Law'},
-    {'_id':faker.database.mongodbObjectId(), name:'Children'},
-    {'_id':faker.database.mongodbObjectId(), name:'Guide'},
-    {'_id':faker.database.mongodbObjectId(), name:'Things you like'},
+    {'_id':faker.database.mongodbObjectId(), title:'Business'},
+    {'_id':faker.database.mongodbObjectId(), title:'Science'},
+    {'_id':faker.database.mongodbObjectId(), title:'Litrature & English'},
+    {'_id':faker.database.mongodbObjectId(), title:'Mathematics'},
+    {'_id':faker.database.mongodbObjectId(), title:'General Book'},
+    {'_id':faker.database.mongodbObjectId(), title:'Law'},
+    {'_id':faker.database.mongodbObjectId(), title:'Children'},
+    {'_id':faker.database.mongodbObjectId(), title:'Guide'},
+    {'_id':faker.database.mongodbObjectId(), title:'Things you like'},
 ]
