@@ -112,7 +112,7 @@ const CustomCarousel = ({ title, className, children }: Props) => {
                   <div
                     className={`flex-shrink-0 w-[${
                       100 / visibleItems
-                    }%] text-center border border-gray-200 flex-1`}
+                    }%] text-center border border-gray-200 flex-1 rounded-lg`}
                     key={index}
                   >
                     {cloneElement(child as ReactElement, {})}

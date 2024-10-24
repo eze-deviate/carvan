@@ -1,20 +1,13 @@
-import { cn, getAverageRating } from "@/lib/utils";
+import { cn, getAverageRating, getNumberOfReviews } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState } from "react";
 import CustomButton from "../globals/custom-button";
 import { Button } from "../ui/button";
-import { Review } from "@/types";
+import { BookType, Review } from "@/types";
 
 type Props = {
   className?: string;
-  book: {
-    _id: string;
-    title: string;
-    author: string;
-    price: number;
-    reviews: Review[];
-    image: string;
-  };
+  book: BookType;
 };
 
 const BookListingCard = ({ className, book }: Props) => {
@@ -22,7 +15,12 @@ const BookListingCard = ({ className, book }: Props) => {
   const rating = getAverageRating(reviews);
   const [hovered, setHovered] = useState(false);
   return (
-    <div className={cn("w-full flex flex-col h-[25.875rem]", className)}>
+    <div
+      className={cn(
+        "w-full flex flex-col h-[25.875rem] bg-transparent rounded-lg",
+        className
+      )}
+    >
       <div className="w-full overflow-hidden rounded-lg">
         <Image
           className="w-full object-contain"
@@ -44,7 +42,9 @@ const BookListingCard = ({ className, book }: Props) => {
               {price}
             </span>
           </span>
-          <span className="">&#9733; {`${rating}(${reviews})`}</span>
+          <span className="">
+            &#9733; {`${rating.toFixed(1)}(${getNumberOfReviews(reviews)})`}
+          </span>
         </div>
         {hovered && (
           <div className="flex justify-between">

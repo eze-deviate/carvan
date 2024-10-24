@@ -12,11 +12,19 @@ import React, { useState } from "react";
 import BookInfoCard from "./_components/book-info";
 import { Separator } from "@/components/ui/separator";
 import DescriptionAndReview from "./_components/description-and-review";
+import QuizModule from "./_components/quiz-modules";
+import OverallRating from "./_components/overall-rating";
+import Reviews from "./_components/reviews";
+import RecommendedBook from "./_components/recommended-books";
+import { useModal } from "@/providers/modal-provider";
+import CustomModal from "@/components/globals/custom-modal";
+import BuyNowModal from "@/components/modal/buy-now-modal";
 
 type Props = {};
 const book = books[0];
 const BookDetailPage = (props: Props) => {
   const [selected, setSelected] = useState("ecopy");
+  const { setOpen, setClose } = useModal();
   return (
     <div className="w-full">
       <Categories />
@@ -27,11 +35,11 @@ const BookDetailPage = (props: Props) => {
           {/* COVER AND DETAILS */}
           <div className="flex w-full gap-12">
             {/* cover */}
-            <div>
+            <div className="w-5/12 ">
               <Image
                 alt={book.title}
                 src={"/assets/images/book-image.webp"}
-                className="self-stretch w-1/4"
+                className="w-full h-full object-fill"
                 width={100}
                 height={100}
               />
@@ -120,12 +128,17 @@ const BookDetailPage = (props: Props) => {
                   <Button className="bg-brand-500 border-none hover:bg-brand-700 text-white text-base py-[11px] px-[37px]">
                     Buy Now
                   </Button>
+                  <BuyNowModal book={book} />
                 </div>
               </div>
             </div>
           </div>
           {/* DESCRIPTION AND REVIEW */}
           <DescriptionAndReview />
+          <QuizModule />
+          <OverallRating reviews={book.reviews} />
+          <Reviews reviews={book.reviews} />
+          <RecommendedBook />
         </div>
       </div>
     </div>

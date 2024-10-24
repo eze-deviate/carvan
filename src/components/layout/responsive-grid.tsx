@@ -22,21 +22,24 @@ const ResponsiveGrid = ({
           <p>See all</p>
         </div>
       )}
-      {React.Children.map(
-        children,
-        (child, index) =>
-          isValidElement(child) && (
-            <div
-              className={cn(
-                "flex-shrink-0 w-full sm:w-1/3 lg:w-1/4 p-4 text-center border border-gray-200 bg-gray-900",
-                containerClassName
-              )}
-              key={index}
-            >
-              {cloneElement(child as ReactElement, {})}
-            </div>
-          )
-      )}
+
+      <div className="w-full flex flex-wrap">
+        {React.Children.map(
+          children,
+          (child, index) =>
+            isValidElement(child) && (
+              <div
+                className={cn(
+                  "flex-shrink-0 w-full sm:w-1/3 lg:w-1/4  text-center border border-gray-200",
+                  containerClassName
+                )}
+                key={index}
+              >
+                {cloneElement(child as ReactElement, {})}
+              </div>
+            )
+        )}
+      </div>
     </div>
   );
 };

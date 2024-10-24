@@ -11,8 +11,8 @@ import { DialogTitle } from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  title: string;
-  subheading: string;
+  title?: string;
+  subheading?: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
   className?: string;
