@@ -13,7 +13,7 @@ const BackButton = (props: Props) => {
     <Button
       {...rest}
       className={cn(
-        "gap-1 bg-gray-100 py-2 pr-[1.125rem] pl-[0.875rem] rounded-3xl text-sm text-[#2F313F] font-medium",
+        "gap-1 bg-gray-100 py-2 pr-[1.125rem] pl-[0.875rem] rounded-3xl text-sm text-[#2F313F] font-medium hover:bg-gray-200",
         className
       )}
     >

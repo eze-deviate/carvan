@@ -33,7 +33,7 @@ const BuyNowModal = (props: Props) => {
       </DialogTrigger>
       <DialogContent className="">
         <div className="flex">
-          <div>
+          <div className="">
             <Image
               alt={book.title}
               src={"/assets/images/book-image.webp"}

@@ -76,7 +76,7 @@ const CustomPagination = (props: Props) => {
             // disabled={number === '...'}
             onClick={() => number !== "..." && onPageChange(number as number)}
             className={cn(
-              "p-3 flex w-10 h-10 items-center justify-center text-gray-600 rounded-[50%]",
+              "p-3 flex w-10 h-10 items-center justify-center text-gray-600 rounded-[50%] cursor-pointer",
               {
                 "bg-brand-100 text-brand-700": number == currentPage,
               }

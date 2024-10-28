@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export interface BookType {
   title: string;
   _id: string;
@@ -20,3 +22,15 @@ export type Review = {
     name: string;
   };
 };
+
+export const CheckoutAddressFormSchema = z.object({
+  firstName: z.string().email("Required"),
+  lastName: z.string().min(1, "Required"),
+  alternativePhoneNumber: z.string(),
+  phoneNumber: z.string(),
+  state: z.string(),
+  district: z.string(),
+  city: z.string(),
+  deliveryAddress: z.string(),
+  additionalInfo: z.string(),
+});

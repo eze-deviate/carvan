@@ -1,7 +1,6 @@
 import { icons, navItems, ui } from "@/constants";
 import SvgAtom from "../icons/svg-atom";
 // import { BellIcon } from "@radix-ui/react-icons";
-import ShoppingBag from "@public/assets/svgs/shopping-bag.svg";
 import SearchIcon from "@public/assets/svgs/search.svg";
 import BellIcon from "@public/assets/svgs/bell.svg";
 import Link from "next/link";
@@ -9,6 +8,8 @@ import { Input } from "../ui/input";
 
 import UserAvatarDropDown from "../navigation/user-avatar-dropdown";
 import { cn } from "@/lib/utils";
+
+import ShoppingSheet from "./shopping-sheet";
 const Header = () => {
   return (
     <header
@@ -50,9 +51,8 @@ const Header = () => {
           />
         </div>
         <div className="flex items-center space-x-6">
-          <button>
-            <ShoppingBag />
-          </button>
+          <ShoppingSheet />
+
           <button>
             <BellIcon className="h-5 w-5" />
           </button>

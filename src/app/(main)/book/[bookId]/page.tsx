@@ -39,7 +39,7 @@ const BookDetailPage = (props: Props) => {
               <Image
                 alt={book.title}
                 src={"/assets/images/book-image.webp"}
-                className="w-full h-full object-fill"
+                className="w-full h-auto"
                 width={100}
                 height={100}
               />
