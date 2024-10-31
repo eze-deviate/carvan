@@ -5,7 +5,7 @@ import { ui } from "@/constants";
 import { cn } from "@/lib/utils";
 import React from "react";
 import CheckoutAdress from "./_components/checkout-address";
-import CheckoutAddressForm from "./_components/checkout-address-form";
+import CheckoutAddressForm from "../../../components/forms/checkout-address-form";
 
 type Props = {};
 

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,23 +8,44 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-
+import PenIcon from "@public/assets/svgs/pen.svg";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { CheckoutAddressFormSchema } from "@/types";
+import { Form } from "../ui/form";
+import CheckoutAddressFields from "../forms/checkout-address-fields";
 type Props = {};
 
 const DeliveryAddressModal = (props: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const form = useForm<z.infer<typeof CheckoutAddressFormSchema>>({
+    resolver: zodResolver(CheckoutAddressFormSchema),
+    defaultValues: {
+      firstName: "",
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    setIsOpen(false); // Close the dialog after submit
+  };
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="bg-brand-500 border-none hover:bg-brand-700 text-white text-base py-[11px] px-[37px]">
-          Buy Now
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="">
-        <DialogHeader>
-          <DialogTitle>Edit Delivery Address</DialogTitle>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+    <div>
+      <PenIcon onClick={() => setIsOpen(true)} />
+      <Dialog>
+        <DialogContent className="">
+          <DialogHeader>
+            <DialogTitle>Edit Delivery Address</DialogTitle>
+          </DialogHeader>
+          <Form {...form}>
+            <form>
+              <CheckoutAddressFields form={form} />
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 

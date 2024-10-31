@@ -8,7 +8,12 @@ import React, {
 } from "react";
 import LeftArrow from "@public/assets/svgs/left-arrow.svg";
 import RightArrow from "@public/assets/svgs/right-arrow.svg";
-import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@radix-ui/react-icons";
 import { ui } from "@/constants";
 
 const books = [
@@ -98,12 +103,12 @@ const CustomCarousel = ({ title, className, children }: Props) => {
         {currentIndex > 0 && (
           <CarouselArrow
             onClick={handlePrevClick}
-            icon={<ArrowLeftIcon className="h-full w-full text-white" />}
+            icon={<ChevronLeftIcon className="h-full w-full text-white" />}
             className="rounded-full -left-10"
           />
         )}
         <div className="w-full">
-          <div className="overflow-hidden gap-x-8 flex w-full transition-transform duration-300">
+          <div className="overflow-hidden gap-x-8 flex w-full transition-all ease-in duration-300">
             {Children.map(
               children,
               (child, index) =>
@@ -112,7 +117,7 @@ const CustomCarousel = ({ title, className, children }: Props) => {
                   <div
                     className={`flex-shrink-0 w-[${
                       100 / visibleItems
-                    }%] text-center border border-gray-200 flex-1 rounded-lg`}
+                    }%] text-center border border-gray-200 flex-1 rounded-lg transition-all `}
                     key={index}
                   >
                     {cloneElement(child as ReactElement, {})}
@@ -125,7 +130,7 @@ const CustomCarousel = ({ title, className, children }: Props) => {
         {currentIndex < Children.count(children) - visibleItems && (
           <CarouselArrow
             onClick={handleNextClick}
-            icon={<ArrowRightIcon className="h-full w-full text-white" />}
+            icon={<ChevronRightIcon className="h-full w-full text-white" />}
             className="rounded-full -right-10"
           />
         )}
@@ -147,7 +152,7 @@ const CarouselArrow = ({
     <span
       onClick={onClick}
       className={cn(
-        " -translate-y-1/2 absolute top-1/2 p-2 bg-gray-500 h-9 w-9 flex items-center justify-center",
+        " -translate-y-1/2 absolute top-1/2 p-2 bg-[#1D293926] h-9 w-9 flex items-center justify-center cursor-pointer",
         className
       )}
     >

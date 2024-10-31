@@ -30,7 +30,7 @@ const ResponsiveGrid = ({
             isValidElement(child) && (
               <div
                 className={cn(
-                  "flex-shrink-0 w-full sm:w-1/3 lg:w-1/4  text-center border border-gray-200",
+                  "flex-shrink-0 w-full sm:w-1/3 lg:w-1/4  text-center border border-gray-200 ",
                   containerClassName
                 )}
                 key={index}

@@ -113,6 +113,9 @@ const config: Config = {
       boxShadow: {
         "custom-1": "0px 0px 0px 2px rgba(91, 144, 75, 0.1)",
         "custom-2": "0px 1px 2px 0px rgba(16, 24, 40, 0.1)",
+        "custom-multi":
+          "0px 0px 0px 4px rgba(91, 144, 75, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.1)",
+        "custom-3": "0px 2px 8px 0px rgba(16, 24, 40, 0.1)",
       },
     },
   },

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CustomButton from "../globals/custom-button";
 import { Button } from "../ui/button";
 import { BookType, Review } from "@/types";
+import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 
 type Props = {
   className?: string;
@@ -20,6 +21,8 @@ const BookListingCard = ({ className, book }: Props) => {
         "w-full flex flex-col h-[25.875rem] bg-transparent rounded-lg",
         className
       )}
+      onMouseOver={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div className="w-full overflow-hidden rounded-lg">
         <Image
@@ -42,13 +45,26 @@ const BookListingCard = ({ className, book }: Props) => {
               {price}
             </span>
           </span>
-          <span className="">
-            &#9733; {`${rating.toFixed(1)}(${getNumberOfReviews(reviews)})`}
+          <span className="flex items-center gap-[0.125rem]">
+            {Math.floor(Math.random() * 10) + 1 > 5 ? (
+              <StarFilledIcon className="text-warning-400" />
+            ) : (
+              <StarIcon />
+            )}
+            <span>{rating.toFixed(1)}</span>
+            <span className="text-gray-600">{`(${getNumberOfReviews(
+              reviews
+            )})`}</span>
           </span>
         </div>
         {hovered && (
           <div className="flex justify-between">
-            <Button></Button>
+            <Button className="bg-transparent hover:bg-transparent  border border-gray-300 text-gray-800 hover:bg-gray-50">
+              Add to Cart
+            </Button>
+            <Button className="bg-brand-500 border-none hover:bg-brand-700 text-white hover:text-white">
+              Buy Now
+            </Button>
           </div>
         )}
       </div>

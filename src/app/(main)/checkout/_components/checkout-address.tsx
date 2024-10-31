@@ -1,3 +1,4 @@
+import DeliveryAddressModal from "@/components/modal/delivery-address-modal";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
@@ -17,6 +18,7 @@ const CheckoutAdress = (props: Props) => {
           {/* phone number */}
           <p className="text-sm font-normal text-gray-700"> </p>
         </div>
+        <DeliveryAddressModal />
       </div>
     </div>
   );

@@ -34,3 +34,15 @@ export const CheckoutAddressFormSchema = z.object({
   deliveryAddress: z.string(),
   additionalInfo: z.string(),
 });
+
+export type ActivityOverview =
+  | "Today"
+  | "Last 7 days"
+  | "Last Month"
+  | "Last 3 Month"
+  | "Last year";
+
+// export const CheckoutAddressModalSchema = z.object({
+//   ...CheckoutAddressFormSchema,
+//   default: z.boolean()
+// })
