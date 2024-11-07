@@ -36,7 +36,6 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     fetchData?: () => Promise<any>
   ) => {
     if (modal) {
-      console.log("I GOT CALLED");
       if (fetchData) {
         setData({ ...data, ...(await fetchData()) });
       }

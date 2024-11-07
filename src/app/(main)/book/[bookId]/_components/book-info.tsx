@@ -11,7 +11,10 @@ const BookInfoCard = () => {
           {Array(3)
             .fill(0)
             .map((item, idx) => (
-              <div className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700">
+              <div
+                key={idx}
+                className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700"
+              >
                 science
               </div>
             ))}
@@ -24,7 +27,10 @@ const BookInfoCard = () => {
           {Array(3)
             .fill(0)
             .map((item, idx) => (
-              <div className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700">
+              <div
+                key={idx}
+                className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700"
+              >
                 science
               </div>
             ))}
@@ -37,7 +43,10 @@ const BookInfoCard = () => {
           {Array(3)
             .fill(0)
             .map((item, idx) => (
-              <div className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700">
+              <div
+                key={idx}
+                className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700"
+              >
                 science
               </div>
             ))}
@@ -50,7 +59,10 @@ const BookInfoCard = () => {
           {Array(3)
             .fill(0)
             .map((item, idx) => (
-              <div className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700">
+              <div
+                key={idx}
+                className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700"
+              >
                 science
               </div>
             ))}
@@ -63,7 +75,10 @@ const BookInfoCard = () => {
           {Array(3)
             .fill(0)
             .map((item, idx) => (
-              <div className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700">
+              <div
+                key={idx}
+                className="rounded py-1 px-[0.6125rem] bg-brand-50 text-brand-700"
+              >
                 science
               </div>
             ))}

@@ -9,8 +9,8 @@ const CurrentlyReading = (props: Props) => {
     <ResponsiveGrid title="Currently Reading" containerClassName="h-96">
       {Array(6)
         .fill(0)
-        .map((item) => (
-          <CurrentlyReadingCard />
+        .map((item, idx) => (
+          <CurrentlyReadingCard key={idx} />
         ))}
     </ResponsiveGrid>
   );

@@ -3,24 +3,27 @@ import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import TrashIcon from "@public/assets/svgs/trash.svg";
-
+import HardCopy from "@public/assets/svgs/hard-copy.svg";
+import ECopy from "@public/assets/svgs/e-copy.svg";
 type Props = {};
 
 const CartItem = (props: Props) => {
   return (
-    <div className="flex p-4 bg-white shadow-md rounded-md">
+    <div className="flex bg-white rounded-md border-none shadow-none">
       <div className="w-1/4">
         <Image
           src="/assets/images/book-image.webp"
           alt="Book Cover"
-          className="w-full h-auto rounded-md"
+          className="w-full h-full rounded-md"
           width={100}
           height={100}
         />
       </div>
       <div className="w-3/4 pl-4 flex flex-col gap-2">
         <div className="bg-gray-200 py-1 px-3 rounded w-fit">
-          <span className="text-gray-800 font-medium text-xs">Hard Copy</span>
+          <span className="text-gray-800 font-medium text-xs flex gap-1">
+            {false ? <HardCopy /> : <ECopy />} Hard Copy
+          </span>
         </div>
         <div className="flex justify-between items-center">
           {/* Author and title */}
@@ -43,18 +46,18 @@ const CartItem = (props: Props) => {
         </p>
         {/* Buttons */}
         <div className="flex justify-between items-center">
-          <div className="w-[8.75rem] flex border border-gray-200 items-center justify-between px-[0.375rem] rounded">
+          <div className="w-[42%] flex border border-gray-200 items-center justify-between px-[0.375rem] rounded">
             <span className="py-[0.6875rem] px-1">
-              <MinusIcon />
+              <MinusIcon className="text-gray-900 font-extrabold" />
             </span>
             <span>2</span>
 
             <span className="py-1 px-[0.5625rem]">
-              <PlusIcon />
+              <PlusIcon className="text-gray-900" />
             </span>
           </div>
 
-          <Button className="border-none bg-brand-500 text-white py-[0.625rem] hover:bg-brand-700 font-semibold text-base">
+          <Button className=" shadow-none border-none bg-brand-500 text-white py-[0.625rem] hover:bg-brand-700 font-semibold text-base w-[42%]">
             Buy Now
           </Button>
         </div>

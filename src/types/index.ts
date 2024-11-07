@@ -1,3 +1,11 @@
+import {
+  AxiosHeaders,
+  AxiosRequestConfig,
+  CreateAxiosDefaults,
+  HeadersDefaults,
+  Method,
+  RawAxiosRequestHeaders,
+} from "axios";
 import { z } from "zod";
 
 export interface BookType {
@@ -46,3 +54,33 @@ export type ActivityOverview =
 //   ...CheckoutAddressFormSchema,
 //   default: z.boolean()
 // })
+
+export type TCart = {};
+
+export type TQuiz = {
+  _id: string;
+  title: string;
+  cover: string;
+  sourced: string;
+  genre: {
+    _id: string;
+    name: string;
+  };
+  oldPrice: any;
+  price: any;
+  reviews: Review[];
+  // questions: any[];
+  // module: any[];
+};
+
+export type TStorageItems = "user" | "cart" | "wishlist";
+
+export type TApiServiceConfig = {
+  url: string;
+  method?: Method;
+  data?: any;
+  // headers?: RawAxiosRequestHeaders | AxiosHeaders | Partial<HeadersDefaults>;
+  headers?: AxiosRequestConfig["headers"];
+  otherConfig?: AxiosRequestConfig;
+};
+export type TApiService = (config: TApiServiceConfig) => Promise<any>;

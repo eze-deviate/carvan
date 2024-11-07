@@ -1,7 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { faker } from "@faker-js/faker";
-import { BookType, Review } from "@/types";
+import { BookType, Review, TQuiz, TStorageItems } from "@/types";
+import { decryptData, encryptData } from "./crypto";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -43,7 +44,7 @@ export function generateFakeBook(n = 100): BookType[] {
 
   return books;
 }
-export function generateFakeQuiz(n = 100) {
+export function generateFakeQuiz(n = 100): TQuiz[] {
   let quiz = [];
   for (let i = 0; i < n; i++) {
     let item = {
@@ -53,7 +54,7 @@ export function generateFakeQuiz(n = 100) {
         faker.lorem.words({ min: 2, max: 4 }) +
         " By " +
         faker.person.fullName(),
-      category: {
+      genre: {
         _id: faker.database.mongodbObjectId(),
         name: faker.word.noun(),
       },
@@ -77,9 +78,10 @@ export function generateFakeQuiz(n = 100) {
         }),
         { count: { min: 7, max: 30 } }
       ),
-      // reviews:faker.number.int({multipleOf:1, min:0, max:1000}),
-      // image:faker.image.url()
-      image: "/assets/images/book-image.webp",
+      // questions: faker.helpers.multiple(() => ({
+      //   _id: faker.database.mongodbObjectId(),
+      // })),
+      cover: "/assets/images/book-image.webp",
     };
     quiz.push(item);
   }
@@ -114,3 +116,19 @@ export function getNumberOfReviews(review: Review[]) {
   }
   return sum;
 }
+
+export const getEncryptedStorageData = (key: TStorageItems) => {
+  return decryptData(localStorage.getItem(key));
+};
+
+export const setEncryptedStorageData = (key: TStorageItems, value: any) => {
+  localStorage.setItem(key, encryptData(value));
+};
+
+export const getStorageData = (key: TStorageItems) => {
+  return localStorage.getItem(key);
+};
+
+export const setStorageData = (key: TStorageItems, value: any = null) => {
+  localStorage.setItem("wishlist", value);
+};

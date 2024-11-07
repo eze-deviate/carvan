@@ -9,3 +9,11 @@ export enum LibraryTabs {
   quizzes = "quizzes",
   wishlist = "wishlist",
 }
+
+export enum SortBrowseOptions {}
+
+// export enum StorageItems {
+//   USER = "user",
+//   CART = "cart",
+//   WISHLIST = "wishlist",
+// }

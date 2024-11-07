@@ -56,3 +56,5 @@ export const activityOverview: { value: ActivityOverview; text: string }[] = [
   { value: "Last 3 Month", text: "Last 3 Month" },
   { value: "Last year", text: "Last Year" },
 ];
+
+export const apiUrl = process.env.NEXT_PUBLIC_API;

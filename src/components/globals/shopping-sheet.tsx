@@ -23,9 +23,9 @@ const ShoppingSheet = (props: Props) => {
           <ShoppingBag />
         </button>
       </SheetTrigger>
-      <SheetContent className="px-8 w-[1000px]">
+      <SheetContent className="px-8 sm:max-w-[33%] w-full">
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
+          <SheetTitle className="">Shopping Bag</SheetTitle>
         </SheetHeader>
         <CartItem />
 
