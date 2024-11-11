@@ -6,6 +6,7 @@ import CustomCarousel from "@/components/carousel/custom-carousel";
 import TestCarousel from "@/components/carousel/test-carousel";
 import FilterModal from "@/components/filter/filter-modal";
 import Categories from "@/components/globals/categories";
+import FavoriteButton from "@/components/globals/favorite-button";
 import Footer from "@/components/globals/footer";
 import Header from "@/components/globals/header";
 import RateItem from "@/components/molecules/rate-item";
@@ -69,6 +70,7 @@ const HomePage = (props: Props) => {
         </CustomCarousel>
       </section>
       <RateItem rating={rating} setRating={setRating} />
+      <FavoriteButton isFavorite={false} />
       <Footer />
     </main>
   );

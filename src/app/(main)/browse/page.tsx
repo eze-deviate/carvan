@@ -12,8 +12,8 @@ const BrowsePage = (props: Props) => {
   return (
     <div className="">
       <Categories />
-      <CustomBanner title="Banner" />
-      <div className={cn("", ui.layoutPadding)}>
+      <CustomBanner title="Banner" className="h-96 mb-6" />
+      <div className={cn("flex flex-col gap-6", ui.layoutPadding)}>
         {/* title */}
         <div className="flex gap-x-3 items-center">
           <h1 className="text-gray-900 text-3xl font-semibold">

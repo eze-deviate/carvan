@@ -5,6 +5,7 @@ import CustomButton from "../globals/custom-button";
 import { Button } from "../ui/button";
 import { BookType, Review } from "@/types";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
+import FavoriteButton from "../globals/favorite-button";
 
 type Props = {
   className?: string;
@@ -18,13 +19,13 @@ const BookListingCard = ({ className, book }: Props) => {
   return (
     <div
       className={cn(
-        "w-full flex flex-col h-[25.875rem] bg-transparent rounded-lg",
+        "w-full flex flex-col h-[25.875rem] bg-transparent rounded-lg relative",
         className
       )}
       onMouseOver={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="w-full overflow-hidden rounded-lg">
+      <div className="w-full overflow-hidden rounded-lg relative">
         <Image
           className="w-full object-contain"
           width={100}
@@ -32,6 +33,15 @@ const BookListingCard = ({ className, book }: Props) => {
           src={image}
           alt={title}
         />
+        {hovered && (
+          <>
+            <FavoriteButton
+              isFavorite={false}
+              className="absolute right-3 top-3 z-10"
+            />
+            <div className="absolute left-0 right-0 bottom-0 w-full h-full bg-hover-shade "></div>
+          </>
+        )}
       </div>
       <div className="flex flex-col w-full flex-1 px-3 mt-[10px] pb-4">
         <div className="text-left capitalize">

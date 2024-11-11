@@ -15,6 +15,8 @@ const config: Config = {
         oswald: ["Oswald", ...fontFamily.sans],
       },
       colors: {
+        "favorite-red": "#FF0000",
+        "hover-shade": "",
         banner: "#F4F4F5",
         brand: {
           "50": "#F0F6EE",
@@ -42,6 +44,7 @@ const config: Config = {
           "400": "#FDB022",
           "800": "#93370D",
         },
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -116,6 +119,10 @@ const config: Config = {
         "custom-multi":
           "0px 0px 0px 4px rgba(91, 144, 75, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.1)",
         "custom-3": "0px 2px 8px 0px rgba(16, 24, 40, 0.1)",
+      },
+      backgroundImage: {
+        "hover-shade":
+          "linear-gradient(359.13deg, rgba(0, 0, 0, 0) -9.32%, rgba(0, 0, 0, 0.32) 99.26%)",
       },
     },
   },
