@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CopyIcon } from "@radix-ui/react-icons";
 import React from "react";
+import PaymentReceipt from "./payment-receipt";
 
 type Props = {
   accountNumber: string;
@@ -49,7 +50,8 @@ const AccountDetails = (props: Props) => {
         </div>
       </div>
 
-      <Separator className="border-dashed border-gray-300" />
+      {/* seprator */}
+      <div className="w-full border-b-2 border-dashed border-gray-300"></div>
 
       <div className="w-full gap-4 flex flex-col">
         <h3 className="text-gray-800 font-medium text-base">
@@ -65,8 +67,12 @@ const AccountDetails = (props: Props) => {
           </div>
         </div>
       </div>
-
-      <Separator className="border-dashed border-gray-300" />
+      {/* separator */}
+      <div className="border-b-2 border-dashed border-gray-300"></div>
+      <PaymentReceipt />
+      <Button className="bg-brand-500 hover:bg-brand-700 text-white hover:text-white py-4">
+        Confirm Payment
+      </Button>
     </div>
   );
 };

@@ -5,21 +5,23 @@ type Props = React.PropsWithChildren &
   React.HTMLAttributes<HTMLDivElement> & {
     title?: string;
     containerClassName?: string;
+    seeAll?: (param?: any) => void | undefined;
   };
 
 const ResponsiveGrid = ({
   children,
   containerClassName,
   title,
+  seeAll = undefined,
   ...props
 }: Props) => {
   const { className, ...otherProps } = props;
   return (
     <div className={cn(``, className)} {...otherProps}>
       {title && (
-        <div className="w-full flex justify-between">
-          <div className="">{title}</div>
-          <p>See all</p>
+        <div className="w-full flex justify-between items-center mb-6">
+          <div className="text-2xl font-semibold text-gray-900">{title}</div>
+          {seeAll && <p>See all</p>}
         </div>
       )}
 

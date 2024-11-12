@@ -4,12 +4,13 @@ import { ui } from "@/constants";
 import { cn } from "@/lib/utils";
 import { ArrowBottomLeftIcon } from "@radix-ui/react-icons";
 import PaymentOptionTabs from "./_components/payment-option-tabs";
+import PaymentReceipt from "./_components/payment-receipt";
 
 type Props = {};
 
 const PaymentPage = (props: Props) => {
   return (
-    <div className={cn("bg-[#F6FAF5]", ui.layoutPadding)}>
+    <div className={cn("bg-[#F6FAF5] pb-12", ui.layoutPadding)}>
       <Button className="gap-1 bg-white rounded-3xl py-2 pl-[0.875rem] pr-4 text-gray-900">
         <ArrowBottomLeftIcon className="" />
         Back to order
@@ -33,7 +34,9 @@ const PaymentPage = (props: Props) => {
             <h3 className="text-base font-medium text-gray-800">
               Choose Payment Platform
             </h3>
-            <PaymentOptionTabs />
+            <div>
+              <PaymentOptionTabs />
+            </div>
           </div>
         </div>
       </div>

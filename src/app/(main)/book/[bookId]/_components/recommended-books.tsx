@@ -8,7 +8,7 @@ type Props = {};
 const RecommendedBook = (props: Props) => {
   return (
     <div>
-      <ResponsiveGrid>
+      <ResponsiveGrid title="Recommended Books">
         {books.slice(0, 4).map((book, idx) => (
           <BookListingCard book={book} />
         ))}

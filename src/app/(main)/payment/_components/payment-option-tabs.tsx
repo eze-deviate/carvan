@@ -19,7 +19,7 @@ const PaymentOptionTabs = (props: Props) => {
     <div>
       <Tabs
         defaultValue={PaymentPlatForm.EasyPaisa}
-        className="w-[400px]"
+        className="w-full"
         onValueChange={handleTabChange}
         value={selectedTab}
       >
@@ -54,20 +54,24 @@ const PaymentOptionTabs = (props: Props) => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value={PaymentPlatForm.EasyPaisa}>
-          <AccountDetails
-            accountName="Caravan-PAY-EA"
-            accountNumber="0321390100"
-            bankName={PaymentPlatForm.EasyPaisa}
-            icon={<EazyPaisaIcon />}
-          />
+          <div className="w-full">
+            <AccountDetails
+              accountName="Caravan-PAY-EA"
+              accountNumber="0321390100"
+              bankName={PaymentPlatForm.EasyPaisa}
+              icon={<EazyPaisaIcon />}
+            />
+          </div>
         </TabsContent>
         <TabsContent value={PaymentPlatForm.JazzCash}>
-          <AccountDetails
-            accountName="Caravan-PAY-EA"
-            accountNumber="0321390100"
-            bankName={PaymentPlatForm.EasyPaisa}
-            icon={<JazzCashIcon />}
-          />
+          <div className="w-full">
+            <AccountDetails
+              accountName="Caravan-PAY-EA"
+              accountNumber="0321390100"
+              bankName={PaymentPlatForm.EasyPaisa}
+              icon={<JazzCashIcon />}
+            />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
