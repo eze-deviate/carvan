@@ -19,6 +19,10 @@ type CustomFieldProps<T extends ZodType<any, any>> = {
   className?: string;
   labelClass?: string;
   schema: T;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
+  iconClassName?: string;
+  iconClick?: (v?: any) => void;
 };
 
 export const CustomField = <T extends ZodType<any, any>>({
@@ -29,6 +33,10 @@ export const CustomField = <T extends ZodType<any, any>>({
   className,
   schema,
   labelClass,
+  icon,
+  iconPosition = "right",
+  iconClassName,
+  iconClick = () => {},
 }: CustomFieldProps<T>) => {
   return (
     <FormField
@@ -43,7 +51,26 @@ export const CustomField = <T extends ZodType<any, any>>({
               {formLabel}
             </FormLabel>
           )}
-          <FormControl>{render({ field })}</FormControl>
+          {icon ? (
+            <div className="relative">
+              {render({ field })}
+              <span
+                onClick={iconClick}
+                className={cn(
+                  "absolute top-1/2 transform -translate-y-1/2 right-3",
+                  {
+                    "left-3": iconPosition == "left",
+                  },
+                  iconClassName
+                )}
+              >
+                {icon}
+              </span>
+            </div>
+          ) : (
+            <FormControl>{render({ field })}</FormControl>
+          )}
+
           <FormMessage />
         </FormItem>
       )}

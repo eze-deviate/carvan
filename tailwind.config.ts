@@ -44,6 +44,9 @@ const config: Config = {
           "400": "#FDB022",
           "800": "#93370D",
         },
+        error: {
+          "600": "#D92D20",
+        },
 
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

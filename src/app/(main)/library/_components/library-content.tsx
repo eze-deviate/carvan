@@ -26,9 +26,9 @@ const LibraryContent = (props: Props) => {
             <TabsTrigger
               key={idx}
               value={item.value}
-              className={cn("flex gap-2 px-4 py-[0.5625rem] bg-transparent", {
-                "bg-brand-500": selectedTab == item.value,
-              })}
+              className={cn(
+                "flex gap-2 px-4 py-[0.5625rem] bg-transparent data-[state=active]:shadow-none data-[state=active]:bg-brand-50"
+              )}
             >
               <LibraryTabsIcons name={item.value} />
               <span>{item.text}</span>

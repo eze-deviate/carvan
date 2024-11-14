@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { LibraryTabs } from "./enums";
-import { ActivityOverview } from "@/types";
+import { ActivityOverview, TProfileMenu } from "@/types";
 export const navItems = [
   {
     text: "Home",
@@ -58,3 +58,13 @@ export const activityOverview: { value: ActivityOverview; text: string }[] = [
 ];
 
 export const apiUrl = process.env.NEXT_PUBLIC_API;
+
+export const profileMenu: TProfileMenu = [
+  { label: "Account", icon: "account" },
+  { label: "Security", icon: "security" },
+  { label: "My Orders", icon: "orders" },
+  { label: "Wishlist", icon: "wishlist" },
+  { label: "Address Book", icon: "address" },
+  { label: "Reviews", icon: "reviews" },
+  { label: "Logout", icon: "logout" },
+];

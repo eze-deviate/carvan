@@ -8,7 +8,7 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="w-full">
       <Header />
-      {children}
+      <main className="mt-12">{children}</main>
     </div>
   );
 };

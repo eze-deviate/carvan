@@ -43,6 +43,13 @@ export const CheckoutAddressFormSchema = z.object({
   additionalInfo: z.string(),
 });
 
+export const UpdatePersonalInfoFormSchema = z.object({
+  firstName: z.string().email("Required"),
+  lastName: z.string().min(1, "Required"),
+  phoneNumber: z.string(),
+  // DateOfBirth:z.string()
+});
+
 export type ActivityOverview =
   | "Today"
   | "Last 7 days"
@@ -84,3 +91,17 @@ export type TApiServiceConfig = {
   otherConfig?: AxiosRequestConfig;
 };
 export type TApiService = (config: TApiServiceConfig) => Promise<any>;
+
+export type TprofileMenuIcon =
+  | "account"
+  | "security"
+  | "orders"
+  | "wishlist"
+  | "address"
+  | "reviews"
+  | "logout";
+export interface TProfileMenuItem {
+  label: string;
+  icon: TprofileMenuIcon;
+}
+export type TProfileMenu = TProfileMenuItem[];
