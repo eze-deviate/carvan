@@ -12,7 +12,7 @@ const nextConfig = {
         //     //   };
         //       config.resolve.alias.canvas = false;
         // }
-
+        config.externals = [...config.externals, { canvas: "canvas" }];
         if (!options.isServer) {
             // Use null-loader for canvas in client-side builds to completely ignore it
             config.module.rules.push({
@@ -28,6 +28,10 @@ const nextConfig = {
         }
         return config;
     },
+    experimental: {
+        esmExternals: "loose", // required for the canvas to work
+      },
+      
     async redirects() {
     return [
         {
