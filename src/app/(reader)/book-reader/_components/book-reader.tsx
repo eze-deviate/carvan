@@ -8,7 +8,13 @@ type Props = {};
 const BookReader = (props: Props) => {
   const { book } = useBookReaderStore();
   return (
-    <div>{book.fileType == ".pdf" ? <PDFReaderDist /> : <EpubReader />}</div>
+    <div>
+      {book.fileType == ".pdf" ? (
+        <PDFReaderDist />
+      ) : (
+        <EpubReader fileUrl="/assets/pdf/thoreau-excursions.epub" />
+      )}
+    </div>
   );
 };
 

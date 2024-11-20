@@ -127,6 +127,9 @@ const config: Config = {
         "hover-shade":
           "linear-gradient(359.13deg, rgba(0, 0, 0, 0) -9.32%, rgba(0, 0, 0, 0.32) 99.26%)",
       },
+      cursor: {
+        highlight: "url('/assets/svgs/highlighter.svg'),  auto",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")],

@@ -70,7 +70,7 @@ const HomePage = (props: Props) => {
         </CustomCarousel>
       </section>
       <RateItem rating={rating} setRating={setRating} />
-      <FavoriteButton isFavorite={false} />
+
       <Footer />
     </main>
   );

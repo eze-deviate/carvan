@@ -130,5 +130,5 @@ export const getStorageData = (key: TStorageItems) => {
 };
 
 export const setStorageData = (key: TStorageItems, value: any = null) => {
-  localStorage.setItem("wishlist", value);
+  localStorage.setItem(key, value);
 };

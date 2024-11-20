@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "@/providers/modal-provider";
 import { Toaster } from "@/components/ui/sonner";
+import AppDataProvider from "@/providers/app-provider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -33,10 +34,12 @@ export default function RootLayout({
       // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       // className={inter.className}
       >
-        <ModalProvider>
-          {children}
-          <Toaster />
-        </ModalProvider>
+        <AppDataProvider>
+          <ModalProvider>
+            {children}
+            <Toaster richColors position="top-right" />
+          </ModalProvider>
+        </AppDataProvider>
       </body>
     </html>
   );

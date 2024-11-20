@@ -1,23 +1,64 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+"use client";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { getStorageData, setStorageData } from "@/lib/utils";
 import { apiService } from "@/lib/api-service";
-const initialState = {};
-const AppContext = createContext<any>(initialState);
-type Props = {};
+import { BookType, TQuiz } from "@/types";
+import { toast } from "sonner";
+type AppContextType = {
+  addToCart: (item: any) => void;
+  removeFromCart: (item: any) => void;
+  addToWishlist: (item: any, resourceType: "book" | "quiz") => void;
+  removeFromWishlist: (item: any) => void;
+  cart: (BookType | TQuiz)[];
+  wishlist: any[];
+};
+const initialState = {
+  addToCart: () => {},
+  removeFromCart: () => {},
+  addToWishlist: () => {},
+  removeFromWishlist: () => {},
+  cart: [],
+  wishlist: [],
+};
+const AppContext = createContext<AppContextType>(initialState);
 
-const AppDataProvider = (props: Props) => {
+type Props = React.PropsWithChildren & {};
+
+const AppDataProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  const [cart, setCart] = useState<(BookType | TQuiz)[]>([]);
+  const [wishlist, setWishlist] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+
+  const addToCart = (item: any) => {
+    const prevCart = cart;
+    let newCart = [...prevCart, item];
+    setCart(newCart);
+    setStorageData("cart", newCart);
+    toast.success("Item Added successfully");
+    // setCart((prevCart) => [...prevCart, item]);
+  };
+
+  const removeFromCart = (itemId: string) => {
+    setCart((prevCart) => prevCart.filter((item) => item._id !== itemId));
+    toast.success("Item deleted Successfully");
+  };
+
+  // Wishlist actions
+  const addToWishlist = (item: any, resourceType: "book" | "quiz") => {
+    const newWishlist = [...wishlist, { resource: item, resourceType }];
+    setWishlist(newWishlist);
+    toast.success("Added To wishlist");
+  };
+
+  const removeFromWishlist = (itemId: any) => {
+    setWishlist((prevWishlist: any) =>
+      prevWishlist.filter((item: any) => item.resource._id !== itemId)
+    );
+    toast("Item removed from  wishlist");
+  };
 
   useEffect(() => {
     const initializeState = async () => {
@@ -35,25 +76,39 @@ const AppDataProvider = (props: Props) => {
           setCart(JSON.parse(storedCart));
           setWishlist(JSON.parse(storedWishlist));
           setLoading(false);
-        } else {
-          const [cartResponse, wishlistResponse] = await Promise.all([
-            apiService({ url: "/api/" }),
-            apiService({ url: "/wishlist" }),
-          ]);
-          setCart(cartResponse.data);
-          setWishlist(wishlistResponse.data);
-          setStorageData("cart", JSON.stringify(cartResponse.data));
-          setStorageData("wishlist", JSON.stringify(wishlistResponse.data));
         }
+        //  else {
+        //   const [cartResponse, wishlistResponse] = await Promise.all([
+        //     apiService({ url: "/api/" }),
+        //     apiService({ url: "/wishlist" }),
+        //   ]);
+        //   setCart(cartResponse.data);
+        //   setWishlist(wishlistResponse.data);
+        //   setStorageData("cart", JSON.stringify(cartResponse.data));
+        //   setStorageData("wishlist", JSON.stringify(wishlistResponse.data));
+        // }
       }
     };
 
     initializeState();
   }, []);
-  return <AppContext.Provider value={{}}></AppContext.Provider>;
+  return (
+    <AppContext.Provider
+      value={{
+        addToCart,
+        removeFromCart,
+        addToWishlist,
+        removeFromWishlist,
+        cart,
+        wishlist,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
-const useAppContext = () => {
+export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {
     throw new Error("useAppContext must be used within the app provider");

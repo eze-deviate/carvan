@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ShoppingBag from "@public/assets/svgs/shopping-bag.svg";
 import {
@@ -12,10 +13,12 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import CartItem from "../molecules/cart-item";
 import { Button } from "../ui/button";
+import { useAppContext } from "@/providers/app-provider";
 
 type Props = {};
 
 const ShoppingSheet = (props: Props) => {
+  const { cart } = useAppContext();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -27,7 +30,9 @@ const ShoppingSheet = (props: Props) => {
         <SheetHeader>
           <SheetTitle className="">Shopping Bag</SheetTitle>
         </SheetHeader>
-        <CartItem />
+        {cart.map((item, idx) => (
+          <CartItem item={item} key={idx} />
+        ))}
 
         <div className="flex flex-col gap-4 w-full justify-between">
           <div className="flex justify-between">

@@ -12,14 +12,14 @@ const PageNavButton = ({ direction, onClick }: Props) => {
   return (
     <Button
       className={cn(
-        "items-center justify-center bg-white flex w-10 h-10 absolute bottom-1/2 transform translate-y-1/2 text-[#2F313F] rounded-[50%] hover:bg-gray-25 hover:text-gray-800",
+        "items-center justify-center bg-white flex h-fit p-3 absolute bottom-1/2 transform translate-y-1/2 text-[#2F313F] rounded-[50%] hover:bg-gray-25 hover:text-gray-800",
         { "left-3": direction == "left" },
         { "right-3": direction == "right" }
       )}
       onClick={onClick}
     >
       {direction == "left" ? (
-        <ChevronLeftIcon stroke="#2F313F" className="h-3 w-2" />
+        <ChevronLeftIcon stroke="#2F313F" />
       ) : (
         <ChevronRightIcon stroke="#2F313F" />
       )}

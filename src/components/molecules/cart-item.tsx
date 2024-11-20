@@ -5,9 +5,13 @@ import { Button } from "../ui/button";
 import TrashIcon from "@public/assets/svgs/trash.svg";
 import HardCopy from "@public/assets/svgs/hard-copy.svg";
 import ECopy from "@public/assets/svgs/e-copy.svg";
-type Props = {};
+import { useAppContext } from "@/providers/app-provider";
+type Props = {
+  item: any;
+};
 
-const CartItem = (props: Props) => {
+const CartItem = ({ item }: Props) => {
+  const { removeFromCart } = useAppContext();
   return (
     <div className="flex bg-white rounded-md border-none shadow-none">
       <div className="w-1/4">
@@ -35,7 +39,10 @@ const CartItem = (props: Props) => {
               By Olivia Crown
             </span>
           </div>
-          <TrashIcon />
+          <TrashIcon
+            className="cursor-pointer hover:shadow-sm"
+            onClick={() => removeFromCart(item._id)}
+          />
         </div>
         {/* price */}
         <p className="">

@@ -1,15 +1,19 @@
 import { cn } from "@/lib/utils";
+import { useAppContext } from "@/providers/app-provider";
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import React from "react";
 
 type Props = {
   className?: string;
   iconClassName?: string;
-  isFavorite?: boolean;
+  resource?: any;
+  resourceType: "book" | "quiz";
 };
 
 const FavoriteButton = (props: Props) => {
-  const { className, iconClassName, isFavorite } = props;
+  const { removeFromWishlist, addToWishlist, wishlist } = useAppContext();
+  const { className, iconClassName, resource, resourceType } = props;
+  const isFav = wishlist.find((item) => item.resource._id == resource._id);
   return (
     <span
       className={cn(
@@ -17,10 +21,23 @@ const FavoriteButton = (props: Props) => {
         className
       )}
     >
-      {isFavorite ? (
-        <HeartFilledIcon className={cn("text-favorite-red", iconClassName)} />
+      {isFav ? (
+        <HeartFilledIcon
+          className={cn("text-favorite-red", iconClassName)}
+          onClick={(e) => {
+            e.stopPropagation();
+            removeFromWishlist(resource._id);
+          }}
+        />
       ) : (
-        <HeartIcon className="text-gray-800" />
+        <HeartIcon
+          className="text-gray-800"
+          onClick={(e) => {
+            console.log("add to cart");
+            e.stopPropagation();
+            addToWishlist(resource, resourceType);
+          }}
+        />
       )}
     </span>
   );

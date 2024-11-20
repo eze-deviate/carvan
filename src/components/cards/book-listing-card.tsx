@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { BookType, Review } from "@/types";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 import FavoriteButton from "../globals/favorite-button";
+import AddToCartButton from "../globals/add-to-cart-button";
+import { useRouter } from "next/navigation";
 
 type Props = {
   className?: string;
@@ -13,9 +15,11 @@ type Props = {
 };
 
 const BookListingCard = ({ className, book }: Props) => {
+  const router = useRouter();
   const { author, price, title, image, reviews } = book;
   const rating = getAverageRating(reviews);
   const [hovered, setHovered] = useState(false);
+
   return (
     <div
       className={cn(
@@ -36,8 +40,9 @@ const BookListingCard = ({ className, book }: Props) => {
         {hovered && (
           <>
             <FavoriteButton
-              isFavorite={false}
               className="absolute right-3 top-3 z-10"
+              resource={book}
+              resourceType={"book"}
             />
             <div className="absolute left-0 right-0 bottom-0 w-full h-full bg-hover-shade "></div>
           </>
@@ -45,7 +50,15 @@ const BookListingCard = ({ className, book }: Props) => {
       </div>
       <div className="flex flex-col w-full flex-1 px-3 mt-[10px] pb-4">
         <div className="text-left capitalize">
-          <p className="text-base font-semibold text-gray-800">{title}</p>
+          <p
+            className="text-base font-semibold text-gray-800 hover:underline hover:cursor-pointer"
+            onClick={() => {
+              console.log("I was called");
+              router.push(`/book/${book._id}?title=${title}`);
+            }}
+          >
+            {title}
+          </p>
           <p className="text-xs text-gray-600 font-normal">{`By ${author}`}</p>
         </div>
         <div className="flex justify-between items-center mt-2">
@@ -69,9 +82,10 @@ const BookListingCard = ({ className, book }: Props) => {
         </div>
         {hovered && (
           <div className="flex justify-between">
-            <Button className="bg-transparent hover:bg-transparent  border border-gray-300 text-gray-800 hover:bg-gray-50">
+            {/* <Button className="bg-transparent hover:bg-transparent  border border-gray-300 text-gray-800 hover:bg-gray-50">
               Add to Cart
-            </Button>
+            </Button> */}
+            <AddToCartButton item={book} />
             <Button className="bg-brand-500 border-none hover:bg-brand-700 text-white hover:text-white">
               Buy Now
             </Button>
