@@ -11,7 +11,7 @@ import {
 import { Button } from "../ui/button";
 import FlagIcon from "@public/assets/svgs/flag.svg";
 import { Form } from "../ui/form";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { Cross1Icon, Cross2Icon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { LeaveAReviewSchema, ReportQuestionSchema } from "@/types";
@@ -26,26 +26,19 @@ const EndQuizPromptModal = (props: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [rating, setRating] = useState(0);
-  const form = useForm<z.infer<typeof ReportQuestionSchema>>({
-    defaultValues: {
-      incorrectAnswer: false,
-      questionIssue: false,
-      imageIssue: false,
-      others: false,
-      spellingOrGrammar: false,
-    },
-  });
+
   const closeDialog = () => setIsOpen(false);
-  const handleFileSelect = () => {};
+
   return (
     <Dialog open={isOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="primary"
-          className="disabled:bg-gray-300"
+          className="gap-2 flex items-center text-gray-900 text-base font-normal"
+          variant="transparent"
           onClick={() => setIsOpen(true)}
         >
-          Continue
+          <Cross1Icon className="" stroke="#1D2939" />
+          Cancel
         </Button>
       </DialogTrigger>
       <DialogContent className="rounded-sm p-7" showClose={false}>

@@ -5,7 +5,7 @@ type Props = {
 };
 const QuizCountdown = ({ onSubmitQuiz, quizStarted }: Props) => {
   //   const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
-  const [timeLeft, setTimeLeft] = useState(1 * 60); // 30 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
 
   //   useEffect(() => {
   //     // Function to update the timer every second

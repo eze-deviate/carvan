@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import QuizModuleIcon from "@public/assets/svgs/quiz-module.svg";
 import BookIcon from "@public/assets/svgs/book.svg";
+import EndQuizPromptModal from "@/components/modal/End-quiz-prompt-modal";
 
 type Props = {};
 
@@ -32,13 +33,15 @@ const InProgressHeader = (props: Props) => {
         </div>
       </div>
 
-      <Button
+      {/* <Button
         className="gap-2 flex items-center text-gray-900 text-base font-normal"
         variant="transparent"
       >
         <Cross1Icon className="" stroke="#1D2939" />
         Cancel
-      </Button>
+      </Button> */}
+
+      <EndQuizPromptModal />
     </header>
   );
 };

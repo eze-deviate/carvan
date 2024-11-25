@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import React, { cloneElement, isValidElement, ReactElement } from "react";
-
+import { useMediaQuery } from "react-responsive";
 type Props = React.PropsWithChildren &
   React.HTMLAttributes<HTMLDivElement> & {
     title?: string;
@@ -16,6 +16,10 @@ const ResponsiveGrid = ({
   ...props
 }: Props) => {
   const { className, ...otherProps } = props;
+  const isSmall = useMediaQuery({ maxWidth: 440 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
   return (
     <div className={cn(``, className)} {...otherProps}>
       {title && (
@@ -25,14 +29,18 @@ const ResponsiveGrid = ({
         </div>
       )}
 
-      <div className="w-full flex flex-wrap">
+      <div className={cn("w-full flex flex-wrap gap-4", {})}>
         {React.Children.map(
           children,
           (child, index) =>
             isValidElement(child) && (
               <div
                 className={cn(
-                  "flex-shrink-0 w-full sm:w-1/3 lg:w-1/4  text-center border border-gray-200 ",
+                  "flex-shrink-0 w-full  text-center border border-gray-200 gap-3",
+                  {
+                    "w-lg-screen": isDesktop,
+                    "w-tablet-screen": isTablet,
+                  },
                   containerClassName
                 )}
                 key={index}

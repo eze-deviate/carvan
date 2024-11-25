@@ -133,6 +133,10 @@ const config: Config = {
       cursor: {
         highlight: "url('/assets/svgs/highlighter.svg'),  auto",
       },
+      width: {
+        "lg-screen": "calc(25% - 1rem)",
+        "tablet-screen": "calc(33.33% - 1rem)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")],

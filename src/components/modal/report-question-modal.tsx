@@ -19,7 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Cross2Icon } from "@radix-ui/react-icons";
+import { Cross2Icon, TrashIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { ReportQuestionSchema } from "@/types";
@@ -46,7 +46,8 @@ const ReportQuestionModal = (props: Props) => {
     },
   });
   const closeDialog = () => setIsOpen(false);
-  const handleFileSelect = () => {
+  const handleFileSelect = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (inputRef?.current) {
       inputRef.current.click();
     }
@@ -63,7 +64,7 @@ const ReportQuestionModal = (props: Props) => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
           variant="outline"
@@ -74,7 +75,10 @@ const ReportQuestionModal = (props: Props) => {
           Report
         </Button>
       </DialogTrigger>
-      <DialogContent className="rounded-sm p-6" showClose={false}>
+      <DialogContent
+        className="rounded-sm p-6 overflow-auto max-h-[90vh]"
+        showClose={false}
+      >
         <DialogClose
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
           onClick={closeDialog}
@@ -175,7 +179,10 @@ const ReportQuestionModal = (props: Props) => {
                   {/* upload button */}
                   <div>
                     <Button
-                      onClick={handleFileSelect}
+                      onClick={(e) => {
+                        e.stopPropagation(); // Stop event propagation
+                        handleFileSelect(e);
+                      }}
                       variant="transparent"
                       className="w-full bg-[#F4F4F6] gap-x-2 hover:bg-gray-200"
                     >
@@ -192,7 +199,7 @@ const ReportQuestionModal = (props: Props) => {
                     />
                   </div>
                   {/* upload preview */}
-                  <div className="flex ">
+                  <div className="flex overflow-x-auto flex-nowrap">
                     {images.map((image, idx) => {
                       const previewUrl = URL.createObjectURL(image);
                       return (
@@ -202,6 +209,19 @@ const ReportQuestionModal = (props: Props) => {
                             alt={`preview-${idx}`}
                             className="object-cover rounded-md w-full h-full"
                           />
+                          <div className="absolute top-0 bottom-0 right-0 left-0"></div>
+                          <span
+                            className="absolute right-3 top-3 cursor-pointer text-white"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleDelete(idx);
+                            }}
+                          >
+                            <TrashIcon
+                              className="text-red-500 hover:text-red-500 z-30"
+                              stroke="#ef4444"
+                            />
+                          </span>
                         </div>
                       );
                     })}
