@@ -105,3 +105,30 @@ export interface TProfileMenuItem {
   icon: TprofileMenuIcon;
 }
 export type TProfileMenu = TProfileMenuItem[];
+
+export type TQuizMode = "study" | "exam";
+export type TQuizStage = "pre" | "inprogress" | "completed";
+
+export const ReportQuestionSchema = z.object({
+  // questionIssue: z.boolean().default(false).optional(),
+  // incorrectAnswer: z.boolean().default(false).optional(),
+  // spellingOrGrammar: z.boolean().default(false).optional(),
+  // imageIssue: z.boolean().default(false).optional(),
+  // others: z.boolean().default(false).optional(),
+  checkboxes: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {
+      message: "You have to select at least one item.",
+    }),
+  description: z
+    .string()
+    .min(10, {
+      message: "Bio must be at least 10 characters.",
+    })
+    .default("")
+    .optional(),
+});
+
+export const LeaveAReviewSchema = z.object({
+  description: z.string().optional(),
+});

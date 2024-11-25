@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import ReaderPopOver from "./reader-options-popover";
 import PageViewPopover from "./page-view-popover";
+import { toast } from "sonner";
 
 type Props = {};
 
@@ -40,9 +41,11 @@ const PDFReaderDist = (props: Props) => {
   const { book } = useBookReaderStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRefP2 = useRef<HTMLCanvasElement>(null);
   const highlightCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const currentRenderTaskRef = useRef<RenderTask | null>(null);
   const textLayerRef = useRef<HTMLDivElement>(null);
+  const textLayerRefP2 = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   // const [pdf, setPdf] = useState<any>(null);
   const [pdfDocument, setPdfDocument] = useState<PDFDocumentProxy | null>(null);
@@ -98,54 +101,63 @@ const PDFReaderDist = (props: Props) => {
       if (!pdfDocument || !canvasRef.current) return;
       const pagesToRender =
         pageView == "double" ? [pageNum, pageNum + 1] : [pageNum];
-      // for(const pageToRender of pagesToRender){
-      //   const page =await pdfDocument.getPage(pageNum);
-      // }
-      const page = await pdfDocument.getPage(pageNum);
       const canvas = canvasRef.current;
       const context = canvas?.getContext("2d");
+      const canvasP2 = canvasRefP2.current;
+      const contextP2 = canvasP2?.getContext("2d");
+
+      const textLayerDiv = textLayerRef.current;
+      const textLayerDivP2 = textLayerRefP2.current;
+      for (const pageToRender of pagesToRender) {
+        let currentCanvas = pageToRender == pageNum ? canvas : canvasP2;
+        let currentContext = pageToRender == pageNum ? context : contextP2;
+
+        const page = await pdfDocument.getPage(pageToRender);
+
+        if (!context) return;
+        if (pageView == "double" && !currentContext) return;
+        const viewport = page.getViewport({ scale });
+        if (currentCanvas) {
+          currentCanvas.width = viewport.width;
+          currentCanvas.height = viewport.height;
+        }
+        // Cancel any ongoing render task before starting a new one
+        if (currentRenderTaskRef?.current?.cancel) {
+          currentRenderTaskRef.current.cancel();
+        }
+
+        // Start the rendering task
+        currentRenderTaskRef.current = page.render({
+          canvasContext: currentContext!,
+          viewport: viewport,
+        });
+        try {
+          await currentRenderTaskRef.current.promise;
+          const textContent = await page.getTextContent();
+
+          textLayerDiv!.innerHTML = "";
+          const textLayer = {
+            textContent,
+            container: pageToRender == pageNum ? textLayerDiv : textLayerDivP2,
+            viewport,
+            textDivs: [],
+            // textContentSource: null,
+            // textContentStream: null,
+          };
+          // pdfjsLib
+          //   .renderTextLayer(textLayer)
+          //   .promise.then(() => console.log("rendered textlayer"));
+          await pdfjsLib.renderTextLayer(textLayer).promise;
+        } catch (err) {
+          toast(`an error occur ${err?.message}`);
+        }
+      }
+
       // const highlightCanvas = highlightCanvasRef.current;
       // const highlightContext = highlightCanvas?.getContext("2d");
-      if (!context) return;
-
-      const viewport = page.getViewport({ scale });
-      if (canvas && highlightCanvasRef) {
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-      }
-
-      // Cancel any ongoing render task before starting a new one
-      if (currentRenderTaskRef?.current?.cancel) {
-        currentRenderTaskRef.current.cancel();
-      }
-
-      // Start the rendering task
-      currentRenderTaskRef.current = page.render({
-        canvasContext: context,
-        viewport: viewport,
-      });
 
       // Handle completion and errors
       try {
-        await currentRenderTaskRef.current.promise;
-        const textContent = await page.getTextContent();
-
-        const textLayerDiv = textLayerRef.current;
-        textLayerDiv!.innerHTML = "";
-
-        const textLayer = {
-          textContent,
-          container: textLayerDiv,
-          viewport,
-          textDivs: [],
-          textContentSource: null,
-          // textContentStream: null,
-        };
-
-        pdfjsLib
-          .renderTextLayer(textLayer)
-          .promise.then(() => console.log("rendered textlayer"));
-
         //render highlights
         highlights.forEach((highlight) => {
           if (highlight.page === pageNum) {
@@ -272,7 +284,7 @@ const PDFReaderDist = (props: Props) => {
 
     setSearchResults(results);
     setPageNumber(results.length > 0 ? results[0].page : 1);
-    setCurrentMatchIndex(0);
+    // setCurrentMatchIndex(0);
   };
 
   const renderTextLayer = (textContent: any, viewport: PageViewport) => {
@@ -399,29 +411,54 @@ const PDFReaderDist = (props: Props) => {
         <div className="bg-[#1E1E1FF0] flex flex-col flex-1">
           {/* pdf-viewer container */}
           <div className="flex w-full justify-center">
-            <div className=" bg-white relative">
-              <canvas ref={canvasRef} className="border"></canvas>
-              {/* <canvas
+            <div className=" bg-white flex">
+              <div className="relative">
+                <canvas ref={canvasRef} className="border"></canvas>
+
+                {/* <canvas
                 ref={highlightCanvasRef}
                 // style={{ position: "absolute", top: 0, left: 0 }}
                 className="absolute top-0 left-0"
               /> */}
-              <div
-                ref={textLayerRef}
-                className={cn("textLayer", {
-                  // "cursor-highlight": isHighlightMode,
-                })}
-                onMouseDown={(e) => {
-                  if (isHighlightMode) {
-                    startHighlight(e);
-                  }
-                }}
-                onMouseUp={(e) => {
-                  if (isHighlightMode) {
-                    endHighlight(e);
-                  }
-                }}
-              ></div>
+                <div
+                  ref={textLayerRef}
+                  className={cn("textLayer", {
+                    // "cursor-highlight": isHighlightMode,
+                  })}
+                  onMouseDown={(e) => {
+                    if (isHighlightMode) {
+                      startHighlight(e);
+                    }
+                  }}
+                  onMouseUp={(e) => {
+                    if (isHighlightMode) {
+                      endHighlight(e);
+                    }
+                  }}
+                ></div>
+              </div>
+
+              {pageView == "double" && (
+                <div className="relative">
+                  <canvas ref={canvasRefP2} className="border"></canvas>
+                  <div
+                    ref={textLayerRefP2}
+                    className={cn("textLayer", {
+                      // "cursor-highlight": isHighlightMode,
+                    })}
+                    onMouseDown={(e) => {
+                      if (isHighlightMode) {
+                        startHighlight(e);
+                      }
+                    }}
+                    onMouseUp={(e) => {
+                      if (isHighlightMode) {
+                        endHighlight(e);
+                      }
+                    }}
+                  ></div>
+                </div>
+              )}
             </div>
           </div>
         </div>

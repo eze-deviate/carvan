@@ -17,6 +17,9 @@ const config: Config = {
       colors: {
         "favorite-red": "#FF0000",
         "hover-shade": "",
+        success: {
+          600: "#039855",
+        },
         banner: "#F4F4F5",
         brand: {
           "50": "#F0F6EE",

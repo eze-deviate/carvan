@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { LibraryTabs } from "./enums";
-import { ActivityOverview, TProfileMenu } from "@/types";
+import { ActivityOverview, TProfileMenu, TQuizMode } from "@/types";
 export const navItems = [
   {
     text: "Home",
@@ -23,6 +23,7 @@ export const icons = {
 export const ui = {
   layoutMargin: "mx-[6.375rem]",
   layoutPadding: "px-[6.375rem]",
+  quizPadding: "px-40",
 };
 
 // values are in rems
@@ -48,6 +49,10 @@ export const libraryTabs = [
   { value: LibraryTabs.quizzes, text: "Quizzes" },
   { value: LibraryTabs.wishlist, text: "Wishlist" },
 ];
+export const quizModeTabs: { value: TQuizMode; text: string }[] = [
+  { value: "study", text: "Study Mode" },
+  { value: "exam", text: "Exam Mode" },
+];
 
 export const activityOverview: { value: ActivityOverview; text: string }[] = [
   { value: "Today", text: "Today" },
@@ -67,4 +72,12 @@ export const profileMenu: TProfileMenu = [
   { label: "Address Book", icon: "address" },
   { label: "Reviews", icon: "reviews" },
   { label: "Logout", icon: "logout" },
+];
+
+export const reportCheckBoxes = [
+  { id: "questionIssue", label: "The questions has an issue" },
+  { id: "incorrectAnswer", label: "The answer choices are incorrect" },
+  { id: "spellingOrGrammar", label: "The Spelling or grammar are incorrect" },
+  { id: "imageIssue", label: "The image used have an issue" },
+  { id: "others", label: "Others" },
 ];

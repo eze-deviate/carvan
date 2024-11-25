@@ -6,10 +6,24 @@ type Props = {
   strokeWidth?: number;
   className?: string;
   radius?: number;
+  // borderColor?: string;
+  // fillColor?: string;
+  isCountDown?: boolean;
+  countDown?: number;
 };
 
 const CircularProgress = (props: Props) => {
-  const { percent, strokeWidth = 3, radius = 20 } = props;
+  const {
+    percent,
+    strokeWidth = 3,
+    radius = 20,
+    // fillColor = "#FEF9C3",
+    isCountDown = false,
+    countDown,
+    // borderColor= countDown? "#294122": "#EAB308",
+    className,
+  } = props;
+
   const newRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * newRadius;
   const offset = circumference - (percent / 100) * circumference;
@@ -20,12 +34,16 @@ const CircularProgress = (props: Props) => {
           r={newRadius}
           cx="50%"
           cy="50%"
-          className="fill-[#FEF9C3] stroke-current text-transparent"
+          className={cn(`fill-[#FEF9C3] stroke-current text-transparent`, {
+            "fill-[#F0F6EE]": countDown,
+          })}
           strokeWidth={strokeWidth}
         />
 
         <circle
-          className="text-[#EAB308] fill-transparent stroke-current"
+          className={cn(`text-[#EAB308] fill-transparent stroke-current`, {
+            "text-[#294122]": countDown,
+          })}
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={offset}
@@ -35,7 +53,9 @@ const CircularProgress = (props: Props) => {
           cy="50%"
         />
       </svg>
-      <span className="absolute text-xs font-normal">{percent}%</span>
+      <span className={cn("absolute text-xs font-normal", className)}>
+        {isCountDown ? countDown : `${percent}%`}
+      </span>
     </div>
   );
 };
