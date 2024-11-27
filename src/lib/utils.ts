@@ -132,3 +132,17 @@ export const getStorageData = (key: TStorageItems) => {
 export const setStorageData = (key: TStorageItems, value: any = null) => {
   localStorage.setItem(key, value);
 };
+
+export const isInArray = (arr: any[], keyPath: string, val: any) => {
+  // Split the keyPath to handle nested keys
+  const keys = keyPath.split(".");
+  // Helper function to get the nested value
+  const getValue = (obj: any, keys: string[]) => {
+    return keys.reduce(
+      (o, k) => (o && o[k] !== "undefined" ? o[k] : undefined),
+      obj
+    );
+  };
+  // Find the element that matches the value for the given key path
+  return arr.find((ele) => getValue(ele, keys) == val);
+};

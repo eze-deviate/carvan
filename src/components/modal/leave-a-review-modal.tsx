@@ -38,14 +38,17 @@ const LeaveAReviewModal = (props: Props) => {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="gap-2"
+          className="gap-2 px-5 w-fit"
           onClick={() => setIsOpen(true)}
         >
-          <FlagIcon />
-          Report
+          Leave Review
         </Button>
       </DialogTrigger>
-      <DialogContent className="rounded-sm p-6" showClose={false}>
+      <DialogContent
+        className="rounded-sm p-6"
+        showClose={false}
+        aria-describedby="Leave a review modal"
+      >
         <DialogClose
           className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
           onClick={closeDialog}
@@ -65,7 +68,13 @@ const LeaveAReviewModal = (props: Props) => {
                 {/* checkbox heading &&& checkboxes */}
                 <div className="flex flex-col gap-y-3">
                   <h3>How would you rate the quiz</h3>
-                  <RateItem rating={rating} setRating={setRating} />
+                  <RateItem
+                    rating={rating}
+                    setRating={setRating}
+                    showAvatar={false}
+                    showButton={false}
+                    showHeading={false}
+                  />
                 </div>
                 {/* Description */}
                 <CustomField
@@ -86,7 +95,7 @@ const LeaveAReviewModal = (props: Props) => {
                 />
               </div>
               <Button variant="primary" type="submit" className="w-full">
-                Submit Report
+                Leave Review
               </Button>
             </div>
           </form>

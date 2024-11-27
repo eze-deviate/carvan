@@ -4,20 +4,15 @@ import { TQuizMode, TQuizStage } from "@/types";
 import StartScreen from "./start-screen";
 import InProgressScreen from "./in-progress";
 import QuizCompletedScreen from "./quiz-completed-screen";
+import { useQuiz } from "@/providers/quiz-provider";
 
 type Props = {};
 
-const QuizContainer = (props: Props) => {
-  const [quizMode, setQuizMode] = useState<TQuizMode>("study");
-  const [quizStage, setQuizStage] = useState<TQuizStage>("pre");
+const QuizContainer = () => {
+  const { quizStage } = useQuiz();
+
   if (quizStage == "pre") {
-    return (
-      <StartScreen
-        quizMode={quizMode}
-        setQuizMode={setQuizMode}
-        setQuizStage={setQuizStage}
-      />
-    );
+    return <StartScreen />;
   }
   if (quizStage == "inprogress") {
     return <InProgressScreen />;

@@ -53,7 +53,6 @@ const BookListingCard = ({ className, book }: Props) => {
           <p
             className="text-base font-semibold text-gray-800 hover:underline hover:cursor-pointer"
             onClick={() => {
-              console.log("I was called");
               router.push(`/book/${book._id}?title=${title}`);
             }}
           >

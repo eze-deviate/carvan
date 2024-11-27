@@ -4,6 +4,7 @@ import ClockIcon from "@public/assets/svgs/clock.svg";
 import { cn } from "@/lib/utils";
 import { ui } from "@/constants";
 import QuizCountdown from "./count-down";
+import { useQuiz } from "@/providers/quiz-provider";
 
 type Props = {
   quizStarted: boolean;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 const Timeline = ({ quizStarted, onSubmitQuiz }: Props) => {
+  const { quizMode, questionNumber, questions } = useQuiz();
+  const percent = ((questionNumber + 1) / questions.length) * 100;
   return (
     <div
       className={cn(
@@ -19,9 +22,14 @@ const Timeline = ({ quizStarted, onSubmitQuiz }: Props) => {
       )}
     >
       <div className="flex gap-x-4 items-center justify-center w-full">
-        <QuizProgressBar progress={45} />
-        <ClockIcon />
-        <QuizCountdown onSubmitQuiz={onSubmitQuiz} quizStarted={quizStarted} />
+        <QuizProgressBar progress={percent} />
+        {quizMode == "exam" && <ClockIcon />}
+        {quizMode == "exam" && (
+          <QuizCountdown
+            onSubmitQuiz={onSubmitQuiz}
+            quizStarted={quizStarted}
+          />
+        )}
       </div>
     </div>
   );

@@ -4,12 +4,19 @@ import { Cross1Icon } from "@radix-ui/react-icons";
 import QuizModuleIcon from "@public/assets/svgs/quiz-module.svg";
 import BookIcon from "@public/assets/svgs/book.svg";
 import EndQuizPromptModal from "@/components/modal/End-quiz-prompt-modal";
+import { cn } from "@/lib/utils";
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-const InProgressHeader = (props: Props) => {
+const InProgressHeader = ({ className }: Props) => {
   return (
-    <header className="flex  w-full justify-between px-12 py-[1.75rem] items-center ">
+    <header
+      className={cn(
+        "flex  w-full justify-between px-12 py-[1.75rem] items-center "
+      )}
+    >
       <div className="flex items-center">
         <div className="flex items-center">
           <img

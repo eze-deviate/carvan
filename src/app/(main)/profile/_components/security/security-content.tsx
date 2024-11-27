@@ -49,7 +49,6 @@ const SecurityContent = (props: Props) => {
     }));
   };
 
-  console.log("PASSWORD VISIBLE", passwordVisible);
   return (
     <div className="flex flex-col gap-y-6">
       <h1 className="text-3xl font-semibold  text-gray-900">Security</h1>

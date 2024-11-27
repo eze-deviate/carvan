@@ -33,7 +33,6 @@ const FavoriteButton = (props: Props) => {
         <HeartIcon
           className="text-gray-800"
           onClick={(e) => {
-            console.log("add to cart");
             e.stopPropagation();
             addToWishlist(resource, resourceType);
           }}

@@ -19,6 +19,7 @@ const config: Config = {
         "hover-shade": "",
         success: {
           600: "#039855",
+          500: "#12B76A",
         },
         banner: "#F4F4F5",
         brand: {
@@ -49,6 +50,9 @@ const config: Config = {
         },
         error: {
           "600": "#D92D20",
+        },
+        greekBlue: {
+          "6": "#2F54EB",
         },
 
         background: "hsl(var(--background))",
@@ -134,8 +138,22 @@ const config: Config = {
         highlight: "url('/assets/svgs/highlighter.svg'),  auto",
       },
       width: {
-        "lg-screen": "calc(25% - 1rem)",
-        "tablet-screen": "calc(33.33% - 1rem)",
+        "lg-screen": "calc(25%-1rem)",
+        "tablet-screen": "calc(33.33%-1rem)",
+        "flex-two-16": "calc(50%-1rem)",
+        "flex-two-40": "calc(50%-2.5rem)",
+      },
+      maxWidth: {
+        "flex-two-16": "calc(50%-1rem)",
+        "flex-two-40": "calc(50%-2.5rem)",
+      },
+      minWidth: {
+        "flex-two-16": "calc(50%-1rem)",
+        "flex-two-40": "calc(50%-2.5rem)",
+      },
+      flexBasis: {
+        "flex-two-16": "calc(50%-1rem)",
+        "flex-two-40": "calc(50%-2.5rem)",
       },
     },
   },

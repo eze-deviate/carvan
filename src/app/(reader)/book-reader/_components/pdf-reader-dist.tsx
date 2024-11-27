@@ -360,7 +360,7 @@ const PDFReaderDist = (props: Props) => {
 
     const range = selection.getRangeAt(0);
     const rect = range.getBoundingClientRect();
-    console.log("selection rectangle", rect);
+
     // Save the highlight
     setHighlights((prev) => [
       ...prev,

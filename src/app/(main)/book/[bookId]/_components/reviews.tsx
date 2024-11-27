@@ -35,7 +35,6 @@ const Reviews = (props: Props) => {
     setSelectedReviews(() => reviews.slice(start, end));
   };
 
-  console.log(selectedRating, "selectedRating");
   return (
     <div className="flex flex-col gap-x-6">
       {/* filtering Header */}

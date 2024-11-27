@@ -6,14 +6,16 @@ import QuizModuleIcon from "@public/assets/svgs/quiz-module.svg";
 import BookIcon from "@public/assets/svgs/book.svg";
 import Image from "next/image";
 import QuizModeTabs from "./quiz-mode-tabs";
+import { useQuiz } from "@/providers/quiz-provider";
 
 type Props = {
-  quizMode: TQuizMode | undefined;
-  setQuizMode: React.Dispatch<React.SetStateAction<TQuizMode>>;
-  setQuizStage: React.Dispatch<React.SetStateAction<TQuizStage>>;
+  // quizMode: TQuizMode | undefined;
+  // setQuizMode: React.Dispatch<React.SetStateAction<TQuizMode>>;
+  // setQuizStage: React.Dispatch<React.SetStateAction<TQuizStage>>;
 };
 
-const StartScreen = ({ quizMode, setQuizMode, setQuizStage }: Props) => {
+const StartScreen = ({}: Props) => {
+  const { quizMode, setQuizMode, setQuizStage } = useQuiz();
   return (
     <div className="flex flex-col h-screen">
       <header className="flex fixed top-0 left-0 w-full justify-between p-4 items-center border-b shadow-md h-20">
@@ -84,13 +86,13 @@ const StartScreen = ({ quizMode, setQuizMode, setQuizStage }: Props) => {
                 <h4 className="text-sm text-gray-500 uppercase text-center">
                   Assesment Modes
                 </h4>
-                <QuizModeTabs quizMode={quizMode} setQuizMode={setQuizMode} />
+                <QuizModeTabs />
               </div>
             </div>
             <Button
               variant="primary"
               className="w-fit py-3 px-8 opacity-100 self-center"
-              onClick={() => setQuizStage("inprogress")}
+              onClick={() => setQuizStage && setQuizStage("inprogress")}
             >
               Start Now
             </Button>

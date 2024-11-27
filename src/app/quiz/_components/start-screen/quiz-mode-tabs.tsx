@@ -4,13 +4,15 @@ import { TQuizMode, TQuizStage } from "@/types";
 import { quizModeTabs } from "@/constants";
 import { cn } from "@/lib/utils";
 import QuizModeIcon from "./quiz-mode-icon";
+import { useQuiz } from "@/providers/quiz-provider";
 
 type Props = {
-  quizMode: TQuizMode | undefined;
-  setQuizMode: React.Dispatch<React.SetStateAction<TQuizMode>>;
+  // quizMode: TQuizMode | undefined;
+  // setQuizMode: React.Dispatch<React.SetStateAction<TQuizMode>>;
 };
 
-const QuizModeTabs = ({ quizMode, setQuizMode }: Props) => {
+const QuizModeTabs = ({}: Props) => {
+  const { quizMode, setQuizMode } = useQuiz();
   return (
     <Tabs
       className="w-full"

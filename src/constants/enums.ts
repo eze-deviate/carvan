@@ -12,6 +12,11 @@ export enum LibraryTabs {
 
 export enum SortBrowseOptions {}
 
+export const QuestionType = {
+  ssc: "ssc",
+  vsc: "vsc",
+  mc: "mc",
+};
 // export enum StorageItems {
 //   USER = "user",
 //   CART = "cart",

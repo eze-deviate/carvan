@@ -11,7 +11,6 @@ const PaymentReceipt = (props: Props) => {
   const handleUploadContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (!inputRef || !inputRef.current) return;
-    console.log("i got here");
     inputRef.current.click();
   };
   return (

@@ -107,7 +107,12 @@ export interface TProfileMenuItem {
 export type TProfileMenu = TProfileMenuItem[];
 
 export type TQuizMode = "study" | "exam";
-export type TQuizStage = "pre" | "inprogress" | "completed";
+export type TQuizStage =
+  | "pre"
+  | "inprogress"
+  | "review"
+  | "completed"
+  | "correction";
 
 export const ReportQuestionSchema = z.object({
   // questionIssue: z.boolean().default(false).optional(),
@@ -132,3 +137,22 @@ export const ReportQuestionSchema = z.object({
 export const LeaveAReviewSchema = z.object({
   description: z.string().optional(),
 });
+
+export type TQuestion = {
+  readonly _id: string;
+  readonly questionText: string;
+  readonly correctAnswer: "A" | "B" | "C" | "D";
+  readonly questionType: string;
+  readonly options: readonly TOption[];
+};
+
+export type TOption = {
+  readonly label: "A" | "B" | "C" | "D";
+  readonly optionText: string;
+  readonly image: string;
+};
+
+export type TUnAnsweredQuestion = {
+  question: TQuestion;
+  index: number;
+};

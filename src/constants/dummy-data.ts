@@ -4,6 +4,7 @@ import {
   generateFakeQuiz,
 } from "@/lib/utils";
 import { faker } from "@faker-js/faker";
+import { QuestionType } from "./enums";
 
 export const books = generateFakeBook(100);
 
@@ -19,3 +20,37 @@ export const dummyOptions = [
   { label: "d", option_text: "Madrid", is_correct: false },
   { label: "e", option_text: "Rome", is_correct: false },
 ];
+
+export const dummyQuestions = faker.helpers.multiple(
+  () => {
+    return {
+      _id: faker.database.mongodbObjectId(),
+      questionText: faker.lorem.sentences({ min: 1, max: 3 }),
+      correctAnswer: faker.helpers.arrayElement(["A", "B", "C", "D"]),
+      questionType: faker.helpers.enumValue(QuestionType),
+      options: [
+        {
+          label: "A",
+          optionText: faker.lorem.lines({ min: 1, max: 2 }),
+          image: "/assets/images/question-image.png",
+        },
+        {
+          label: "B",
+          optionText: faker.lorem.lines({ min: 1, max: 2 }),
+          image: "/assets/images/question-image.png",
+        },
+        {
+          label: "C",
+          optionText: faker.lorem.lines({ min: 1, max: 2 }),
+          image: "/assets/images/question-image.png",
+        },
+        {
+          label: "D",
+          optionText: faker.lorem.lines({ min: 1, max: 2 }),
+          image: "/assets/images/question-image.png",
+        },
+      ],
+    };
+  },
+  { count: { min: 5, max: 10 } }
+);

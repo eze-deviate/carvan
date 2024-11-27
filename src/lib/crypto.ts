@@ -1,6 +1,5 @@
 import CryptoJS from "crypto-js";
 const secretPass = process.env.NEXT_PUBLIC_SECRET_PASS as string;
-console.log("SECRET PASS", secretPass);
 export const encryptData = (data: any) => {
   const cipherText = CryptoJS?.AES?.encrypt(
     JSON.stringify(data),
