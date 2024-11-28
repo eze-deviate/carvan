@@ -13,6 +13,8 @@ import RateItem from "@/components/molecules/rate-item";
 import RangeSlider from "@/components/ui/range-slider";
 import { books, quizzes } from "@/constants/dummy-data";
 import React, { useState } from "react";
+import BannerTop from "./_components/banner-top";
+import BannerBottom from "./_components/banner-bottom";
 
 type Props = {};
 
@@ -29,7 +31,8 @@ const HomePage = (props: Props) => {
   const [rating, setRating] = useState(0);
   return (
     <main className="w-full">
-      <CustomBanner title="Caravan Book Shop" className="h-[41.313rem] mb-16" />
+      {/* <CustomBanner title="Caravan Book Shop" className="h-[41.313rem] mb-16" /> */}
+      <BannerTop />
       <section>
         <CustomCarousel className="max-w-full" title="Recommended Books">
           {books.map((book, idx) => (
@@ -43,25 +46,8 @@ const HomePage = (props: Props) => {
         </CustomCarousel>
       </section>
 
-      <CustomBanner title="Caravan Quizzes" className="h-[26.25rem] mb-16" />
-
-      {/* <section className="flex flex-col gap-y-10">
-        <CustomCarousel className="max-w-full" title="Best Selling">
-          {books.map((book, idx) => (
-            <BookListingCard book={book} key={idx} />
-          ))}
-        </CustomCarousel>
-        <CustomCarousel className="max-w-full" title="Customer Favorites">
-          {books.map((book, idx) => (
-            <BookListingCard book={book} key={idx} />
-          ))}
-        </CustomCarousel>
-        <CustomCarousel className="max-w-full" title="Great Children Books">
-          {books.map((book, idx) => (
-            <BookListingCard book={book} key={idx} />
-          ))}
-        </CustomCarousel>
-      </section> */}
+      {/* <CustomBanner title="Caravan Quizzes" className="h-[26.25rem] mb-16" /> */}
+      <BannerBottom />
       <section>
         <CustomCarousel className="max-w-full" title="Best Selling">
           {quizzes.map((quiz, idx) => (

@@ -24,6 +24,7 @@ export const ui = {
   layoutMargin: "mx-[6.375rem]",
   layoutPadding: "px-[6.375rem]",
   quizPadding: "px-40",
+  bannerPadding: "pl-[4.375rem]",
 };
 
 // values are in rems

@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { getStorageData, setStorageData } from "@/lib/utils";
+import { getStorageData, isInArray, setStorageData } from "@/lib/utils";
 import { apiService } from "@/lib/api-service";
 import { BookType, TQuiz } from "@/types";
 import { toast } from "sonner";
@@ -33,6 +33,11 @@ const AppDataProvider = ({ children }: Props) => {
   const [loading, setLoading] = useState(true);
 
   const addToCart = (item: any) => {
+    const itemInCart = isInArray(cart, "_id", item._id);
+    if (itemInCart) {
+      toast.info("Item Already Added To cart");
+      return;
+    }
     const prevCart = cart;
     let newCart = [...prevCart, item];
     setCart(newCart);

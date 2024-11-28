@@ -9,6 +9,7 @@ import {
   TQuizMode,
   TQuizStage,
   TUnAnsweredQuestion,
+  TUserAnswer,
 } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -38,6 +39,11 @@ type QuizContextType = {
   getTotalScore: () => number;
   goToPrevQuestion: () => void;
   unansweredQuestions: TUnAnsweredQuestion[];
+  userAnswer: { [key: string]: TUserAnswer };
+  unansweredQuestionsDict: {
+    [key: string]: TUnAnsweredQuestion;
+  };
+  handleSubmitReview: () => void;
 };
 
 export const QuizContext = createContext<QuizContextType>({
@@ -56,6 +62,9 @@ export const QuizContext = createContext<QuizContextType>({
   getTotalScore: () => 0,
   goToPrevQuestion: () => {},
   unansweredQuestions: [],
+  userAnswer: {},
+  unansweredQuestionsDict: {},
+  handleSubmitReview: () => {},
 });
 
 const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
@@ -70,11 +79,20 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [unansweredQuestions, setUnansweredQuestions] = useState<
     TUnAnsweredQuestion[]
   >([]);
+  const [unansweredQuestionsDict, setUnansweredQuestionsDict] = useState<{
+    [key: string]: TUnAnsweredQuestion;
+  }>({});
+  const [userAnswer, setUserAnswer] = useState<{ [key: string]: TUserAnswer }>(
+    {}
+  );
   const checkCorrectAnswer = () => {
     if (quizMode == "study") {
       //check locally
     } else {
     }
+  };
+  const handleSubmitReview = () => {
+    setQuizStage("completed");
   };
 
   const getCorrectAnswer = (questionIndex: any) => {
@@ -101,6 +119,10 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
       };
 
       setUnansweredQuestions((prev) => [...prev, unanswered]);
+      setUnansweredQuestionsDict((prev) => ({
+        ...prev,
+        [questions[questionNumber]._id]: unanswered,
+      }));
     }
     //if hasanswered and is in unansweredArray remove from unanswered array
     if (hasAnswered && isInUnansweredArray) {
@@ -109,6 +131,9 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
           (ele) => ele.question._id !== questions[questionNumber]._id
         );
       });
+      const prevDict = unansweredQuestionsDict;
+      delete prevDict[questions[questionNumber]._id];
+      setUnansweredQuestionsDict(prevDict);
     }
     setIsCorrect(false);
     setHasAnswered(false);
@@ -122,13 +147,14 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
     setHasAnswered(false);
     setSelectedOption(null);
   };
-  const handleAnswerSelect = (selectedOption: any) => {
+  const handleAnswerSelect = (selectedOption: TOption) => {
     setSelectedOption(selectedOption);
+    setTimeout(() => {
+      setHasAnswered(true);
+    }, 100);
     if (quizMode == "study") {
-      setTimeout(() => {
-        setHasAnswered(true);
-      }, 100);
       const question = questions[questionNumber];
+      question;
       // const isInUnansweredArray = isInArray(
       //   unansweredQuestions,
       //   "question._id",
@@ -149,11 +175,27 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
         setIsCorrect(false);
       }
     }
+    // const userAnswerObj: { [key: string]: TUserAnswer } = userAnswer;
+    // userAnswerObj[questions[questionNumber]._id] =
+    const userAnsObj = {
+      question: questions[questionNumber],
+      selectedOption,
+      index: questionNumber,
+    };
+
+    setUserAnswer((prevAns) => ({
+      ...prevAns,
+      [questions[questionNumber]._id]: userAnsObj,
+    }));
   };
 
   const handleMultichoiceSelect = () => {};
   const handleSubmitQuiz = () => {
-    setQuizStage("completed");
+    if (quizMode == "study") {
+      setQuizStage("completed");
+    } else if (quizMode == "exam") {
+      setQuizStage("review");
+    }
   };
   const getTotalScore = () => {
     //TODO: REFACTOR LATER BUT FOR NOW JUST RETURN QUESTION.LENGTH
@@ -184,6 +226,9 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
         getTotalScore,
         goToPrevQuestion,
         unansweredQuestions,
+        userAnswer,
+        unansweredQuestionsDict,
+        handleSubmitReview,
       }}
     >
       {children}

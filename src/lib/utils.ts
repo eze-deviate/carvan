@@ -134,6 +134,7 @@ export const setStorageData = (key: TStorageItems, value: any = null) => {
 };
 
 export const isInArray = (arr: any[], keyPath: string, val: any) => {
+  console.log("ARR", arr, "val", val);
   // Split the keyPath to handle nested keys
   const keys = keyPath.split(".");
   // Helper function to get the nested value

@@ -8,9 +8,11 @@ import CheckCorrectIcon from "@public/assets/svgs/check-correct.svg";
 import ScoreIcon from "@public/assets/svgs/score.svg";
 import WiatClockIcon from "@public/assets/svgs/wait-clock.svg";
 import InProgressHeader from "../in-progress/in-progress-header";
+import { useQuiz } from "@/providers/quiz-provider";
 type Props = {};
 
 const QuizCompletedExamMode = (props: Props) => {
+  const { setQuizStage } = useQuiz();
   return (
     <div className="flex flex-col h-screen justify-between">
       <InProgressHeader />
@@ -52,7 +54,13 @@ const QuizCompletedExamMode = (props: Props) => {
         <div className="flex flex-col gap-4">
           <Button variant="outline" className="gap-x-2">
             <CheckCorrectIcon />
-            <span>Check Correction</span>
+            <span
+              onClick={() => {
+                setQuizStage && setQuizStage("correction");
+              }}
+            >
+              Check Correction
+            </span>
           </Button>
 
           <p className="text-sm text-gray-700">
@@ -68,7 +76,14 @@ const QuizCompletedExamMode = (props: Props) => {
   Share Scorecard
 </Button> */}
         <ShareModal link="https://stackoverflow.com/questions/79107395/next-js-14-2-10-build-error-cant-resolve-canvas-when-using-pdfjs-dist-in-c" />
-        <Button variant="primary">Continue</Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            setQuizStage && setQuizStage("performance-info");
+          }}
+        >
+          Continue
+        </Button>
       </div>
     </div>
   );

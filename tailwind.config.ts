@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+const plugin = require("tailwindcss/plugin");
 
 const config: Config = {
   darkMode: ["class"],
@@ -28,6 +29,7 @@ const config: Config = {
           "200": "#BBD7B2",
           "400": "#5B904B",
           "500": "#294122",
+          "600": "#22361C",
           "700": "#22361C",
           default: "#294122",
         },
@@ -157,6 +159,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/line-clamp"),
+
+    plugin(function ({ addUtilities }: any) {
+      addUtilities({
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none", // IE and Edge
+          "scrollbar-width": "none", // Firefox
+          "&::-webkit-scrollbar": {
+            display: "none", // Chrome, Safari, and Opera
+          },
+        },
+      });
+    }),
+  ],
 };
 export default config;

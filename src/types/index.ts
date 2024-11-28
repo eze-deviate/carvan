@@ -1,3 +1,4 @@
+import { QuestionType } from "@/constants/enums";
 import {
   AxiosHeaders,
   AxiosRequestConfig,
@@ -112,7 +113,8 @@ export type TQuizStage =
   | "inprogress"
   | "review"
   | "completed"
-  | "correction";
+  | "correction"
+  | "performance-info";
 
 export const ReportQuestionSchema = z.object({
   // questionIssue: z.boolean().default(false).optional(),
@@ -142,6 +144,7 @@ export type TQuestion = {
   readonly _id: string;
   readonly questionText: string;
   readonly correctAnswer: "A" | "B" | "C" | "D";
+  // readonly questionType: typeof QuestionType;
   readonly questionType: string;
   readonly options: readonly TOption[];
 };
@@ -154,5 +157,11 @@ export type TOption = {
 
 export type TUnAnsweredQuestion = {
   question: TQuestion;
+  index: number;
+};
+
+export type TUserAnswer = {
+  question: TQuestion;
+  selectedOption: TOption; // Replace 'any' with the actual type of selectedOption
   index: number;
 };
