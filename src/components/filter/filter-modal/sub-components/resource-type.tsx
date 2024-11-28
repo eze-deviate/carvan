@@ -16,8 +16,7 @@ const ResourceType = (props: Props) => {
           className={cn(
             "p-2 bg-white border-gray-200 text-gray-800 hover:text-brand-500 hover:bg-brand-100 gap-1",
             {
-              "shadow-custom-1 shadow-custom-2 text-brand-500 bg-brand-100":
-                item.selected,
+              "shadow-custom-1  text-brand-500 bg-brand-100": item.selected,
             }
           )}
           key={index}
