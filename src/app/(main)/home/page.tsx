@@ -15,6 +15,7 @@ import { books, quizzes } from "@/constants/dummy-data";
 import React, { useState } from "react";
 import BannerTop from "./_components/banner-top";
 import BannerBottom from "./_components/banner-bottom";
+import ResponsiveGrid from "@/components/layout/responsive-grid";
 
 type Props = {};
 
@@ -32,8 +33,8 @@ const HomePage = (props: Props) => {
   return (
     <main className="w-full">
       {/* <CustomBanner title="Caravan Book Shop" className="h-[41.313rem] mb-16" /> */}
-      <BannerTop />
-      <section>
+      <BannerTop className="mb-14" />
+      <section className="flex flex-col gap-y-10">
         <CustomCarousel className="max-w-full" title="Recommended Books">
           {books.map((book, idx) => (
             <BookListingCard book={book} key={idx} />
@@ -47,13 +48,29 @@ const HomePage = (props: Props) => {
       </section>
 
       {/* <CustomBanner title="Caravan Quizzes" className="h-[26.25rem] mb-16" /> */}
-      <BannerBottom />
-      <section>
-        <CustomCarousel className="max-w-full" title="Best Selling">
+      <BannerBottom className="my-20" />
+      <section className="flex flex-col gap-y-10">
+        <CustomCarousel className="max-w-full" title="Customers Favorite">
+          {books.map((book, idx) => (
+            <BookListingCard book={book} key={idx} />
+          ))}
+        </CustomCarousel>
+        <CustomCarousel
+          className="max-w-full"
+          title="Great Grand Children's book"
+        >
+          {books.map((book, idx) => (
+            <BookListingCard book={book} key={idx} />
+          ))}
+        </CustomCarousel>
+      </section>
+      <CustomBanner title="Caravan Quizzes" className="h-[26.25rem] my-20" />
+      <section className="flex flex-col gap-y-10">
+        <ResponsiveGrid className="max-w-full" title="Best Selling">
           {quizzes.map((quiz, idx) => (
             <QuizListingCard quiz={quiz} key={idx} />
           ))}
-        </CustomCarousel>
+        </ResponsiveGrid>
       </section>
       <RateItem rating={rating} setRating={setRating} />
 

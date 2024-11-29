@@ -8,12 +8,7 @@ import React, {
 } from "react";
 import LeftArrow from "@public/assets/svgs/left-arrow.svg";
 import RightArrow from "@public/assets/svgs/right-arrow.svg";
-import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "@radix-ui/react-icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { ui } from "@/constants";
 
 const books = [
@@ -94,7 +89,9 @@ const CustomCarousel = ({ title, className, children }: Props) => {
       {title && (
         <div className="flex justify-between ">
           <h2 className="text-2xl font-semibold">{title}</h2>
-          <p className="text-base text-brand-500 font-medium">See all</p>
+          <p className="text-base text-brand-500 font-medium cursor-pointer">
+            See all
+          </p>
         </div>
       )}
 

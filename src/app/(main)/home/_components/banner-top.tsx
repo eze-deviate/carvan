@@ -4,14 +4,17 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-const BannerTop = (props: Props) => {
+const BannerTop = ({ className }: Props) => {
   return (
     <div
       className={cn(
         "flex gap-x-12 bg-brand-500 w-full relative h-[90vh] items-center justify-between pl-[4.375rem] ",
-        ui.bannerPadding
+        ui.bannerPadding,
+        className
       )}
     >
       <div className="flex flex-col gap-y-8 z-10">

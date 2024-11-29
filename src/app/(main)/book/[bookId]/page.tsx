@@ -101,6 +101,9 @@ const BookDetailPage = () => {
                             selected == "ecopy",
                         }
                       )}
+                      onClick={() => {
+                        setSelected("ecopy");
+                      }}
                     >
                       <span className="text-sm">
                         <span className="text-gray-800 text-base font-medium">
@@ -121,6 +124,9 @@ const BookDetailPage = () => {
                             selected == "hardcopy",
                         }
                       )}
+                      onClick={() => {
+                        setSelected("hardcopy");
+                      }}
                     >
                       <span className="text-gray-800 text-base font-medium">
                         hard copy

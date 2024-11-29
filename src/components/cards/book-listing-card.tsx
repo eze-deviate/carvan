@@ -1,13 +1,12 @@
 import { cn, getAverageRating, getNumberOfReviews } from "@/lib/utils";
-import Image from "next/image";
-import React, { useState } from "react";
-import CustomButton from "../globals/custom-button";
-import { Button } from "../ui/button";
-import { BookType, Review } from "@/types";
+import { BookType } from "@/types";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
-import FavoriteButton from "../globals/favorite-button";
-import AddToCartButton from "../globals/add-to-cart-button";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import AddToCartButton from "../globals/add-to-cart-button";
+import FavoriteButton from "../globals/favorite-button";
+import { Button } from "../ui/button";
 
 type Props = {
   className?: string;

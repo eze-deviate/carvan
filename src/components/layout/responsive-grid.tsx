@@ -38,8 +38,8 @@ const ResponsiveGrid = ({
                 className={cn(
                   "flex-shrink-0 w-full  text-center border border-gray-200 gap-3",
                   {
-                    "w-lg-screen": isDesktop,
-                    "w-tablet-screen": isTablet,
+                    "lg-screen": isDesktop,
+                    "tablet-screen": isTablet,
                   },
                   containerClassName
                 )}
