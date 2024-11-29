@@ -23,11 +23,11 @@ type QuizContextType = {
   quizMode: TQuizMode;
   quizStage: TQuizStage;
   setQuizMode: (mode: TQuizMode) => void;
-  setQuizStage?: (mode: TQuizStage) => void;
+  setQuizStage: (mode: TQuizStage) => void;
   questionNumber: number;
-  setQuestionNumber?: (num: number) => void;
+  setQuestionNumber: (num: number) => void;
   hasAnswered: boolean;
-  setHasAnswered?: (val: boolean) => void;
+  setHasAnswered: (val: boolean) => void;
   questions: TQuestion[];
   goToNextQuestion: () => void;
   handleAnswerSelect: (v: any) => void;
@@ -65,6 +65,9 @@ export const QuizContext = createContext<QuizContextType>({
   userAnswer: {},
   unansweredQuestionsDict: {},
   handleSubmitReview: () => {},
+  setQuestionNumber: () => {},
+  setQuizStage: () => {},
+  setHasAnswered: () => {},
 });
 
 const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
@@ -154,7 +157,7 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
     }, 100);
     if (quizMode == "study") {
       const question = questions[questionNumber];
-      question;
+
       // const isInUnansweredArray = isInArray(
       //   unansweredQuestions,
       //   "question._id",

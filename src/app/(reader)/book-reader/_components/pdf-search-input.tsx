@@ -4,7 +4,6 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   Cross1Icon,
-  Crosshair2Icon,
 } from "@radix-ui/react-icons";
 import React, { useEffect } from "react";
 

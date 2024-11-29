@@ -44,7 +44,7 @@ const ReviewQuizScreen = (props: Props) => {
                     key={`unanswered-${idx}`}
                     className="bg-gray-200 rounded p-[0.625rem] text-gray-800 text-sm font-medium cursor-pointer"
                     onClick={() => {
-                      setQuestionNumber && q.index;
+                      setQuestionNumber(q.index);
                     }}
                   >{`Q.${q.index + 1}`}</span>
                 ))}

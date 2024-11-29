@@ -1,11 +1,10 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 
+import { dummyDescription } from "@/constants/dummy-data";
+import { BookType } from "@/types";
 import DescriptionTab from "./description-tab";
 import ReviewsTab from "./reviews-tab";
 import TabButton from "./tab-button";
-import { dummyDescription } from "@/constants/dummy-data";
-import { BookType } from "@/types";
 
 type Props = {
   book: BookType;

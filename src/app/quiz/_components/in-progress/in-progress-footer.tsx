@@ -1,10 +1,8 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import FlagIcon from "@public/assets/svgs/flag.svg";
-import { cn } from "@/lib/utils";
-import { ui } from "@/constants";
-import ReportQuestionModal from "@/components/modal/report-question-modal";
 import EndQuizPromptModal from "@/components/modal/End-quiz-prompt-modal";
+import ReportQuestionModal from "@/components/modal/report-question-modal";
+import { Button } from "@/components/ui/button";
+import { ui } from "@/constants";
+import { cn } from "@/lib/utils";
 import { useQuiz } from "@/providers/quiz-provider";
 
 type Props = {
@@ -39,7 +37,7 @@ const InprogressFooter = ({ className }: Props) => {
               key={`unanswered-${idx}`}
               className="bg-gray-200 rounded p-[0.625rem] text-gray-800 text-sm font-medium cursor-pointer"
               onClick={() => {
-                setQuestionNumber && setQuestionNumber(q.index);
+                if (setQuestionNumber) setQuestionNumber(q.index);
               }}
             >{`Q.${q.index + 1}`}</span>
           ))}

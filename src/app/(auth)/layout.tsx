@@ -3,8 +3,6 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import CarvanLogo from "@public/assets/svgs/logo.svg";
 
-type Props = {};
-
 const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <main className="w-full">

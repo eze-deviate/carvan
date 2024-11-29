@@ -23,10 +23,10 @@ export const defaultInitState: globalStoreState = {
 export const createGlobalStore = (
   initState: globalStoreState = defaultInitState
 ) => {
-  return createStore<GlobalStore>()((set, get) => ({
+  return createStore<GlobalStore>()((_set, _get) => ({
     ...initState,
-    addToCart: (item) => {},
-    removeFromCart: (item) => {},
+    addToCart: (_item) => {},
+    removeFromCart: (_item) => {},
     updateCartQuantity: () => {},
   }));
 };

@@ -1,4 +1,5 @@
 import { TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 const TabButton = (
@@ -8,7 +9,10 @@ const TabButton = (
 ) => {
   const { className, text, ...otherProps } = props;
   return (
-    <TabsTrigger className="data-[state=active]:shadow-none" {...otherProps}>
+    <TabsTrigger
+      className={cn("data-[state=active]:shadow-none", className)}
+      {...otherProps}
+    >
       {text}
     </TabsTrigger>
   );

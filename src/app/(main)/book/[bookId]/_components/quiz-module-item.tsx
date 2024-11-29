@@ -2,9 +2,7 @@ import React from "react";
 import QuizModuleIcon from "@public/assets/svgs/quiz-module.svg";
 import BookIcon from "@public/assets/svgs/book.svg";
 
-type Props = {};
-
-const QuizModuleItem = (props: Props) => {
+const QuizModuleItem = () => {
   return (
     <div className="flex flex-col py-3 border-b border-b-gray-200">
       <div className="flex flex-col gap-3">

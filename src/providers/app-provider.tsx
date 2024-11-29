@@ -39,7 +39,7 @@ const AppDataProvider = ({ children }: Props) => {
       return;
     }
     const prevCart = cart;
-    let newCart = [...prevCart, item];
+    const newCart = [...prevCart, item];
     setCart(newCart);
     setStorageData("cart", newCart);
     toast.success("Item Added successfully");

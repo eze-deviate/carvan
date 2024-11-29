@@ -25,5 +25,5 @@ const AddToCartButton = React.forwardRef<HTMLButtonElement, Props>(
     );
   }
 );
-
+AddToCartButton.displayName = "AddToCartButton";
 export default AddToCartButton;

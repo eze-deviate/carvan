@@ -173,8 +173,8 @@ const ReportQuestionModal = (props: Props) => {
                 {/* upload */}
                 <div className="flex flex-col gap-y-4">
                   <p className="text-gray-500 text-sm">
-                    Could you share a screenshot? It'll help us understand your
-                    report better. {`(optional)`}
+                    Could you share a screenshot? It&apos;ll help us understand
+                    your report better. {`(optional)`}
                   </p>
                   {/* upload button */}
                   <div>
@@ -203,7 +203,7 @@ const ReportQuestionModal = (props: Props) => {
                     {images.map((image, idx) => {
                       const previewUrl = URL.createObjectURL(image);
                       return (
-                        <div className="relative">
+                        <div className="relative" key={idx}>
                           <img
                             src={previewUrl}
                             alt={`preview-${idx}`}

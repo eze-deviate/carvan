@@ -3,14 +3,12 @@ import ResponsiveGrid from "@/components/layout/responsive-grid";
 import { books } from "@/constants/dummy-data";
 import React from "react";
 
-type Props = {};
-
-const RecommendedBook = (props: Props) => {
+const RecommendedBook = () => {
   return (
     <div>
       <ResponsiveGrid title="Recommended Books">
         {books.slice(0, 4).map((book, idx) => (
-          <BookListingCard book={book} />
+          <BookListingCard book={book} key={`recommended-${idx}`} />
         ))}
       </ResponsiveGrid>
     </div>

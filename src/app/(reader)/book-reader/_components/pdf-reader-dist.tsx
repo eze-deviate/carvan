@@ -19,6 +19,7 @@ import {
   PDFDocumentProxy,
   PDFPageProxy,
   RenderTask,
+  renderTextLayer,
 } from "pdfjs-dist";
 import SearchIcon from "@public/assets/svgs/reader-search.svg";
 import BookmarkIcon from "@public/assets/svgs/bookmark.svg";
@@ -26,7 +27,7 @@ import HighlighterIcon from "@public/assets/svgs/highlighter.svg";
 import EraserIcon from "@public/assets/svgs/eraser.svg";
 import PDFSearchInput from "./pdf-search-input";
 import "pdfjs-dist/web/pdf_viewer.css";
-import * as pdfjsLib from "pdfjs-dist/build/pdf";
+// import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import ReaderPopOver from "./reader-options-popover";
@@ -109,8 +110,8 @@ const PDFReaderDist = (props: Props) => {
       const textLayerDiv = textLayerRef.current;
       const textLayerDivP2 = textLayerRefP2.current;
       for (const pageToRender of pagesToRender) {
-        let currentCanvas = pageToRender == pageNum ? canvas : canvasP2;
-        let currentContext = pageToRender == pageNum ? context : contextP2;
+        const currentCanvas = pageToRender == pageNum ? canvas : canvasP2;
+        const currentContext = pageToRender == pageNum ? context : contextP2;
 
         const page = await pdfDocument.getPage(pageToRender);
 
@@ -138,17 +139,19 @@ const PDFReaderDist = (props: Props) => {
           textLayerDiv!.innerHTML = "";
           const textLayer = {
             textContent,
-            container: pageToRender == pageNum ? textLayerDiv : textLayerDivP2,
+            container: (pageToRender == pageNum
+              ? textLayerDiv
+              : textLayerDivP2) as HTMLDivElement,
             viewport,
             textDivs: [],
-            // textContentSource: null,
+            textContentSource: textContent,
             // textContentStream: null,
           };
           // pdfjsLib
           //   .renderTextLayer(textLayer)
           //   .promise.then(() => console.log("rendered textlayer"));
-          await pdfjsLib.renderTextLayer(textLayer).promise;
-        } catch (err) {
+          await renderTextLayer(textLayer).promise;
+        } catch (err: any) {
           toast(`an error occur ${err?.message}`);
         }
       }
@@ -259,11 +262,11 @@ const PDFReaderDist = (props: Props) => {
           const height = Math.abs(transform[3]);
 
           // Convert to viewport coordinates
-          const [x0, y0] = viewport.convertToViewportPoint(x, y);
+          const [x0, y0] = viewport.convertToViewportPoint(x, y) as any;
           const [x1, y1] = viewport.convertToViewportPoint(
             x + width,
             y - height
-          );
+          ) as any;
 
           // Construct DOMRect
           const rect = {
@@ -287,31 +290,31 @@ const PDFReaderDist = (props: Props) => {
     // setCurrentMatchIndex(0);
   };
 
-  const renderTextLayer = (textContent: any, viewport: PageViewport) => {
-    const textLayerDiv = textLayerRef.current;
-    textLayerDiv!.innerHTML = ""; // Clear existing text layer
+  // const renderTextLayer = (textContent: any, viewport: PageViewport) => {
+  //   const textLayerDiv = textLayerRef.current;
+  //   textLayerDiv!.innerHTML = ""; // Clear existing text layer
 
-    textContent.items.forEach((item) => {
-      const textDiv = document.createElement("div");
-      const { transform, width, height, str } = item;
+  //   textContent.items.forEach((item) => {
+  //     const textDiv = document.createElement("div");
+  //     const { transform, width, height, str } = item;
 
-      // Apply the text transform (to position the text correctly)
-      const [scaleX, skewX, skewY, scaleY, offsetX, offsetY] = transform;
-      const transformStyle = `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${offsetX}, ${offsetY})`;
+  //     // Apply the text transform (to position the text correctly)
+  //     const [scaleX, skewX, skewY, scaleY, offsetX, offsetY] = transform;
+  //     const transformStyle = `matrix(${scaleX}, ${skewY}, ${skewX}, ${scaleY}, ${offsetX}, ${offsetY})`;
 
-      textDiv.textContent = str;
-      textDiv.style.position = "absolute";
-      textDiv.style.transform = transformStyle;
-      textDiv.style.transformOrigin = "0 0";
-      textDiv.style.width = `${width}px`;
-      textDiv.style.height = `${height}px`;
+  //     textDiv.textContent = str;
+  //     textDiv.style.position = "absolute";
+  //     textDiv.style.transform = transformStyle;
+  //     textDiv.style.transformOrigin = "0 0";
+  //     textDiv.style.width = `${width}px`;
+  //     textDiv.style.height = `${height}px`;
 
-      textLayerDiv!.appendChild(textDiv);
-    });
+  //     textLayerDiv!.appendChild(textDiv);
+  //   });
 
-    // Apply search highlights
-    // highlightSearch();
-  };
+  //   // Apply search highlights
+  //   // highlightSearch();
+  // };
   const handleTextHighlight = async (pageNumber: number) => {
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed) return;
@@ -346,6 +349,7 @@ const PDFReaderDist = (props: Props) => {
   // Start highlighting (mouse down)
   const startHighlight = (event: any) => {
     const textDiv = textLayerRef.current;
+    if (!textDiv || !textDiv.firstChild) return;
     const range = document.createRange();
     range.setStart(textDiv?.firstChild, 0);
 

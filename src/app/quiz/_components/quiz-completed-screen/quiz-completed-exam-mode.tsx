@@ -56,7 +56,7 @@ const QuizCompletedExamMode = (props: Props) => {
             <CheckCorrectIcon />
             <span
               onClick={() => {
-                setQuizStage && setQuizStage("correction");
+                setQuizStage("correction");
               }}
             >
               Check Correction
@@ -79,7 +79,7 @@ const QuizCompletedExamMode = (props: Props) => {
         <Button
           variant="primary"
           onClick={() => {
-            setQuizStage && setQuizStage("performance-info");
+            setQuizStage("performance-info");
           }}
         >
           Continue

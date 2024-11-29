@@ -10,6 +10,7 @@ import UserAvatarDropDown from "../navigation/user-avatar-dropdown";
 import { cn } from "@/lib/utils";
 
 import ShoppingSheet from "./shopping-sheet";
+import Image from "next/image";
 const Header = () => {
   return (
     <header
@@ -20,10 +21,12 @@ const Header = () => {
     >
       <div className="flex items-center gap-20">
         <div className="flex items-center">
-          <img
+          <Image
             src="/assets/svgs/logo-with-text.svg"
             alt="Caravan logo"
             className="h-10 mr-2"
+            width={100}
+            height={48}
           />
           {/* <SvgAtom iconName={icons.iconWithText} /> */}
           {/* <span className="text-xl font-bold text-black">Caravan</span> */}

@@ -1,11 +1,9 @@
-import React from "react";
-import { books } from "@/constants/dummy-data";
-import BookPagesIcon from "@public/assets/svgs/book-pages.svg";
 import IsbnIcon from "@public/assets/svgs/barcode.svg";
-import PublishedIcon from "@public/assets/svgs/published.svg";
+import BookPagesIcon from "@public/assets/svgs/book-pages.svg";
 import ChineeseCharIcon from "@public/assets/svgs/chineese-char.svg";
+import PublishedIcon from "@public/assets/svgs/published.svg";
 import { format } from "date-fns";
-const book = books[0];
+
 const BookInfoCard = () => {
   return (
     <div className="flex flex-col gap-y-4">

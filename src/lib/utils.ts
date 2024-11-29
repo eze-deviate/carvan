@@ -9,9 +9,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function generateFakeBook(n = 100): BookType[] {
-  let books = [];
+  const books = [];
   for (let i = 0; i < n; i++) {
-    let item = {
+    const item = {
       title: faker.word.words({ count: { min: 2, max: 3 } }),
       _id: faker.database.mongodbObjectId(),
       author: faker.person.firstName() + " " + faker.person.lastName(),
@@ -45,9 +45,9 @@ export function generateFakeBook(n = 100): BookType[] {
   return books;
 }
 export function generateFakeQuiz(n = 100): TQuiz[] {
-  let quiz = [];
+  const quiz = [];
   for (let i = 0; i < n; i++) {
-    let item = {
+    const item = {
       title: faker.word.words({ count: { min: 2, max: 3 } }),
       _id: faker.database.mongodbObjectId(),
       sourced:
@@ -90,9 +90,9 @@ export function generateFakeQuiz(n = 100): TQuiz[] {
 }
 
 export function generateFakeCategory(n = 10) {
-  let categories = [];
+  const categories = [];
   for (let i = 0; i < n; i++) {
-    let item = {
+    const item = {
       _id: faker.database.mongodbObjectId(),
       text: faker.lorem.words({ min: 1, max: 3 }),
       selected: false,

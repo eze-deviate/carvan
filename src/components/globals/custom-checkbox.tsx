@@ -19,4 +19,5 @@ const CustomCheckBox = React.forwardRef<
   />
 ));
 
+CustomCheckBox.displayName = "CustomCheckBox";
 export default CustomCheckBox;

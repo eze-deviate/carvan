@@ -1,14 +1,7 @@
-import { QuestionType } from "@/constants/enums";
-import {
-  AxiosHeaders,
-  AxiosRequestConfig,
-  CreateAxiosDefaults,
-  HeadersDefaults,
-  Method,
-  RawAxiosRequestHeaders,
-} from "axios";
+import { AxiosRequestConfig, Method } from "axios";
 import { z } from "zod";
 
+interface TBook {}
 export interface BookType {
   title: string;
   _id: string;
@@ -19,7 +12,6 @@ export interface BookType {
   reviews: Review[];
   image: string;
 }
-[];
 
 export type Review = {
   rating: number;

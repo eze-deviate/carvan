@@ -3,28 +3,23 @@ import BackButton from "@/components/buttons/back-button";
 import Categories from "@/components/globals/categories";
 import AverageStarRating from "@/components/molecules/average-star-rating";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { ui } from "@/constants";
 import { books } from "@/constants/dummy-data";
 import { cn } from "@/lib/utils";
 import { FileTextIcon, HeartIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import BookInfoCard from "./_components/book-info";
-import { Separator } from "@/components/ui/separator";
 // import DescriptionAndReview from "./_components/description-and-review";
-import QuizModule from "./_components/quiz-modules";
-import OverallRating from "./_components/overall-rating";
-import Reviews from "./_components/reviews";
-import RecommendedBook from "./_components/recommended-books";
-import { useModal } from "@/providers/modal-provider";
-import CustomModal from "@/components/globals/custom-modal";
 import BuyNowModal from "@/components/modal/buy-now-modal";
+import { useModal } from "@/providers/modal-provider";
 import BookDetailsTab from "./_components/book-details-tabs";
+import RecommendedBook from "./_components/recommended-books";
 import RecommendedQuiz from "./_components/recommended-quiz";
 
-type Props = {};
 const book = books[0];
-const BookDetailPage = (props: Props) => {
+const BookDetailPage = () => {
   const [selected, setSelected] = useState("ecopy");
   const { setOpen, setClose } = useModal();
   return (

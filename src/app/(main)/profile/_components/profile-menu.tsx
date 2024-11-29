@@ -39,8 +39,13 @@ type Props = {
 const ProfileMenu = ({ active, setActive }: Props) => {
   return (
     <aside className="w-full h-screen sm:w-[22%] hidden  border-r border-gray-300 pr-4 sm:flex flex-col gap-y-6 pt-8">
-      {profileMenu.map((menuItem) => (
-        <MenuItem menuItem={menuItem} active={active} setActive={setActive} />
+      {profileMenu.map((menuItem, idx) => (
+        <MenuItem
+          menuItem={menuItem}
+          active={active}
+          setActive={setActive}
+          key={`menuitem-${idx}`}
+        />
       ))}
     </aside>
   );

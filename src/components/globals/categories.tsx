@@ -16,7 +16,10 @@ const Categories = ({ className }: Props) => {
       )}
     >
       {categories.map((cat, idx) => (
-        <p className="text-base text-gray-700 font-normal px-[0.625rem] py-2">
+        <p
+          className="text-base text-gray-700 font-normal px-[0.625rem] py-2"
+          key={idx}
+        >
           {cat.title}
         </p>
       ))}

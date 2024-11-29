@@ -46,7 +46,7 @@ const OverallRating = (props: Props) => {
           {stars.reverse().map((star, idx) => {
             const [starCount, percentage] = getStartCount(reviews, star);
             return (
-              <div className="flex gap-x-3">
+              <div className="flex gap-x-3" key={idx}>
                 <AverageStarRating rating={star} />
                 <ProgressBar percent={percentage} />
                 <span>{`${starCount} (${percentage.toFixed(2)}%)`}</span>

@@ -23,5 +23,5 @@ const RangeSlider = React.forwardRef<
     </SliderPrimitive.Root>
   );
 });
-
+RangeSlider.displayName = "RangeSlider";
 export default RangeSlider;

@@ -15,8 +15,8 @@ const reviewFilterItems = [
 const ReviewRating = (props: Props) => {
   return (
     <div className="flex w-full gap-x-2">
-      {reviewFilterItems.map((item, index) => (
-        <FilterButton item={item} />
+      {reviewFilterItems.map((item, idx) => (
+        <FilterButton item={item} key={idx} />
       ))}
     </div>
   );

@@ -42,7 +42,7 @@ const EpubReader: React.FC<EpubReaderProps> = ({ fileUrl }) => {
 
     rendition.display();
 
-    rendition.on("relocated", (location) => {
+    rendition.on("relocated", (location: any) => {
       setCurrentLocation(location);
     });
 
@@ -52,18 +52,18 @@ const EpubReader: React.FC<EpubReaderProps> = ({ fileUrl }) => {
     };
   }, [fileUrl, isDoublePageView]);
 
-  const highlightText = () => {
-    if (!renditionRef.current || !isHighlightMode) return;
+  // const highlightText = () => {
+  //   if (!renditionRef.current || !isHighlightMode) return;
 
-    const range = renditionRef.current.getRange();
-    if (range) {
-      const highlight: Highlight = {
-        text: range.toString(),
-        location: currentLocation?.start.cfi || "",
-      };
-      setHighlights((prev) => [...prev, highlight]);
-    }
-  };
+  //   const range = renditionRef.current.getRange();
+  //   if (range) {
+  //     const highlight: Highlight = {
+  //       text: range.toString(),
+  //       location: currentLocation?.start.cfi || "",
+  //     };
+  //     setHighlights((prev) => [...prev, highlight]);
+  //   }
+  // };
 
   const removeHighlight = (highlightToRemove: Highlight) => {
     setHighlights((prev) =>
@@ -94,25 +94,35 @@ const EpubReader: React.FC<EpubReaderProps> = ({ fileUrl }) => {
     );
   };
 
-  const searchDocument = async () => {
-    if (!bookInstance) return;
+  // const searchDocument = async () => {
+  //   if (!bookInstance) return;
 
-    const results: SearchResult[] = [];
-    const searchText = searchQuery.toLowerCase();
-    const spineItems = bookInstance.spine.spineItems;
+  //   const results: SearchResult[] = [];
+  //   const searchText = searchQuery.toLowerCase();
 
-    for (const spineItem of spineItems) {
-      const text = await spineItem.getContents();
-      const index = text.toLowerCase().indexOf(searchText);
-      if (index !== -1) {
-        results.push({
-          cfi: spineItem.cfiBase,
-          excerpt: text.substr(index, searchText.length + 50),
-        });
-      }
-    }
-    setSearchResults(results);
-  };
+  //   // Access spine items from bookInstance.spine.items
+  //   const spineItems = bookInstance.spine.items;
+
+  //   for (const spineItem of spineItems) {
+  //     try {
+  //       const contents = await spineItem.load(bookInstance.load.bind(bookInstance)); // Load spine item content
+  //       const text = contents?.textContent || ""; // Extract text content
+  //       spineItem.unload(); // Unload spine item after usage to save memory
+
+  //       const index = text.toLowerCase().indexOf(searchText);
+  //       if (index !== -1) {
+  //         results.push({
+  //           cfi: spineItem.cfiBase, // Use the CFI base for navigation
+  //           excerpt: text.substring(index, index + searchText.length + 50), // Capture a snippet
+  //         });
+  //       }
+  //     } catch (err) {
+  //       console.error(`Error searching spine item: ${spineItem.id}`, err);
+  //     }
+  //   }
+
+  //   setSearchResults(results);
+  // };
 
   const zoomIn = () => {
     setFontSize((prev) => prev + 10);
@@ -143,7 +153,7 @@ const EpubReader: React.FC<EpubReaderProps> = ({ fileUrl }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search..."
         />
-        <button onClick={searchDocument}>Search</button>
+        {/* <button onClick={searchDocument}>Search</button> */}
         <button onClick={zoomIn}>Zoom In</button>
         <button onClick={zoomOut}>Zoom Out</button>
         <button onClick={togglePageView}>
