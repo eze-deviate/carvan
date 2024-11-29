@@ -17,6 +17,7 @@ import { useModal } from "@/providers/modal-provider";
 import BookDetailsTab from "./_components/book-details-tabs";
 import RecommendedBook from "./_components/recommended-books";
 import RecommendedQuiz from "./_components/recommended-quiz";
+import AddToCartButton from "@/components/globals/add-to-cart-button";
 
 const book = books[0];
 const BookDetailPage = () => {
@@ -84,11 +85,13 @@ const BookDetailPage = () => {
                     <span className="text-3xl font-semibold ">
                       ${book.price}
                     </span>
-                    <span>E-copy</span>
-                    <span className="flex gap-2 items-center rounded-sm bg-warning-100 p-2 text-warning-800">
-                      <FileTextIcon />
-                      Quiz Included
-                    </span>
+                    <span>{selected == "ecopy" ? `E-copy` : "Hard Copy"}</span>
+                    {selected == "ecopy" && (
+                      <span className="flex gap-2 items-center rounded-sm bg-warning-100 p-2 text-warning-800">
+                        <FileTextIcon />
+                        Quiz Included
+                      </span>
+                    )}
                   </p>
                   {/* copy select */}
                   <div className="flex gap-9">
@@ -138,11 +141,9 @@ const BookDetailPage = () => {
                   </div>
                   {/* buy buttons */}
                   <div className="flex gap-9">
-                    <Button className="flex-1 bg-transparent hover:bg-brand-50 text-gray-800 text-base py-[11px] px-[37px]">
-                      Add to Cart
-                    </Button>
+                    <AddToCartButton item={book} className="w-56" />
 
-                    <BuyNowModal book={book} buttonClassName="flex-1" />
+                    <BuyNowModal book={book} buttonClassName="w-56" />
                   </div>
                 </div>
               </div>

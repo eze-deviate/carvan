@@ -157,3 +157,8 @@ export type TUserAnswer = {
   selectedOption: TOption; // Replace 'any' with the actual type of selectedOption
   index: number;
 };
+
+export type TCartItem = {
+  item: BookType | TQuiz;
+  qty: number;
+};

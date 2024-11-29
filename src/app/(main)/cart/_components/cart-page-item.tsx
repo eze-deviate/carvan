@@ -3,10 +3,14 @@ import TrashIcon from "@public/assets/svgs/trash.svg";
 import CopyLabel from "@/components/globals/copy-label";
 import Image from "next/image";
 import { HeartIcon, MinusIcon, PlusIcon } from "@radix-ui/react-icons";
+import { useAppContext } from "@/providers/app-provider";
 
-type Props = {};
+type Props = {
+  cartItem: any;
+};
 
-const CartPageItem = (props: Props) => {
+const CartPageItem = ({ cartItem }: Props) => {
+  const { removeFromCart } = useAppContext();
   return (
     <div className="w-full flex bg-gray-50 border border-gray-300 pr-4 pl-[0.625rem] py-[0.625rem]">
       <div className="w-[18.2%]">
@@ -31,7 +35,11 @@ const CartPageItem = (props: Props) => {
               By Olivia Crown
             </span>
           </div>
-          <TrashIcon />
+          <TrashIcon
+            onClick={() => {
+              removeFromCart(cartItem);
+            }}
+          />
         </div>
         {/* wishlist */}
         <span className="flex gap-2">

@@ -1,3 +1,4 @@
+"use client";
 import BackButton from "@/components/buttons/back-button";
 import { ui } from "@/constants";
 import { cn } from "@/lib/utils";
@@ -5,10 +6,16 @@ import React from "react";
 import CartPageItem from "./_components/cart-page-item";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { useAppContext } from "@/providers/app-provider";
+import ResponsiveGrid from "@/components/layout/responsive-grid";
+import { books } from "@/constants/dummy-data";
+import BookListingCard from "@/components/cards/book-listing-card";
+import { useRouter } from "next/navigation";
+import Footer from "@/components/globals/footer";
 
-type Props = {};
-
-const CartPage = (props: Props) => {
+const CartPage = () => {
+  const { cart } = useAppContext();
+  const router = useRouter();
   return (
     <div className={cn("flex flex-col gap-12", ui.layoutPadding)}>
       <BackButton text="continue book hunting" className="shadow-none w-52" />
@@ -20,7 +27,9 @@ const CartPage = (props: Props) => {
           <div className="flex gap-16">
             {/* cart items */}
             <div className="flex flex-col gap-6 w-[51%]">
-              <CartPageItem />
+              {cart.map((cartItem, idx) => (
+                <CartPageItem key={`cartitem-${idx}`} cartItem={cartItem} />
+              ))}
             </div>
             {/* order summary */}
             <div className="flex flex-col w-[44%] bg-gray-50 border border-gray-300 p-4 gap-6">
@@ -49,7 +58,12 @@ const CartPage = (props: Props) => {
               </div>
 
               {/* checkout button */}
-              <Button className="bg-brand-500 text-white border-none hover:bg-brand-700 hover:text-white hover:outline-none hover:border-none">
+              <Button
+                className="bg-brand-500 text-white border-none hover:bg-brand-700 hover:text-white hover:outline-none hover:border-none"
+                onClick={() => {
+                  router.push("/checkout");
+                }}
+              >
                 Checkout
               </Button>
             </div>
@@ -60,8 +74,16 @@ const CartPage = (props: Props) => {
           <h1 className="text-2xl font-semibold text-gray-900">
             You may also like
           </h1>
+
+          <ResponsiveGrid>
+            {books.slice(0, 4).map((book) => (
+              <BookListingCard book={book} />
+            ))}
+          </ResponsiveGrid>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

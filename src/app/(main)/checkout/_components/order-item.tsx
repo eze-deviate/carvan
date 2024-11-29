@@ -6,7 +6,7 @@ type Props = {};
 
 const OrderItem = (props: Props) => {
   return (
-    <div className="">
+    <div className="flex gap-x-4">
       <div className="w-[18.2%]">
         <Image
           src="/assets/images/book-image.webp"

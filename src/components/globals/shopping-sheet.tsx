@@ -1,25 +1,23 @@
 "use client";
-import React from "react";
+import { useAppContext } from "@/providers/app-provider";
 import ShoppingBag from "@public/assets/svgs/shopping-bag.svg";
+import Image from "next/image";
+import CartItem from "../molecules/cart-item";
+import { Button } from "../ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
-import CartItem from "../molecules/cart-item";
-import { Button } from "../ui/button";
-import { useAppContext } from "@/providers/app-provider";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const ShoppingSheet = (props: Props) => {
   const { cart } = useAppContext();
+  const router = useRouter();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -67,10 +65,18 @@ const ShoppingSheet = (props: Props) => {
                 <Button
                   variant="outline"
                   className="px-[2.3125rem] py-[1.125rem] font-semibold text-gray-800 text-base"
+                  onClick={() => {
+                    router.push("/cart");
+                  }}
                 >
                   View Cart
                 </Button>
-                <Button className="border-none bg-brand-500 text-white hover:bg-brand-700 font-semibold px-[2.3125rem] py-[1.125rem]">
+                <Button
+                  className="border-none bg-brand-500 text-white hover:bg-brand-700 font-semibold px-[2.3125rem] py-[1.125rem]"
+                  onClick={() => {
+                    router.push("/checkout");
+                  }}
+                >
                   Checkout
                 </Button>
               </div>
