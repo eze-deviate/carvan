@@ -9,7 +9,7 @@ const MyLibraryPage = (props: Props) => {
   return (
     <div className={cn("w-full", ui.layoutPadding)}>
       {/* heading */}
-      <div className="flex flex-col gap-y-4">
+      <div className="flex flex-col gap-y-4 my-16">
         <h1 className="font-oswald font-medium text-[3.5rem] text-gray-900">
           Welcome Back, John <span>👋</span>
         </h1>

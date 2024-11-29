@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CopyIcon } from "@radix-ui/react-icons";
-import React from "react";
+import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import React, { useState } from "react";
 import PaymentReceipt from "./payment-receipt";
 
 type Props = {
@@ -13,6 +13,40 @@ type Props = {
 
 const AccountDetails = (props: Props) => {
   const { accountName, accountNumber, bankName, icon } = props;
+  //TODO: make amount to pay dynamic
+  const amountToPay = 2038;
+  const [copied, setCopied] = useState(false);
+  const [amountCopied, setAmountCopied] = useState(false);
+  const handleCopyAccountNumber = () => {
+    if (typeof window !== undefined) {
+      navigator.clipboard
+        .writeText(accountNumber as string)
+        .then(() => {
+          setCopied(true);
+          setTimeout(() => {
+            setCopied(false);
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy text:", err);
+        });
+    }
+  };
+  const handleCopyAmountToPay = () => {
+    if (typeof window !== undefined) {
+      navigator.clipboard
+        .writeText(`${amountToPay}`)
+        .then(() => {
+          setAmountCopied(true);
+          setTimeout(() => {
+            setAmountCopied(false);
+          }, 1000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy text:", err);
+        });
+    }
+  };
   return (
     <div className="w-full flex flex-col gap-4">
       <h3 className="text-gray-800 text-base font-medium">
@@ -34,8 +68,12 @@ const AccountDetails = (props: Props) => {
             <p className="text-gray-900 font-semibold text-sm">
               {accountNumber}
             </p>
-            <Button className="bg-transparent hover:bg-transparent text-gray-700 text-sm font-medium gap-2">
-              <CopyIcon /> copy
+            <Button
+              className="bg-transparent hover:bg-transparent text-gray-700 text-sm font-medium gap-2"
+              onClick={handleCopyAccountNumber}
+            >
+              {copied ? <CheckIcon className="text-brand-400" /> : <CopyIcon />}
+              copy
             </Button>
           </div>
         </div>
@@ -60,9 +98,19 @@ const AccountDetails = (props: Props) => {
         <div className="w-full flex flex-col gap-2">
           <h4 className="text-gray-600 text-sm font-normal">Amount to Pay</h4>
           <div className="flex justify-between">
-            <p className="text-gray-900 font-semibold text-sm">PKT 2038</p>
-            <Button className="bg-transparent hover:bg-transparent text-gray-700 text-sm font-medium gap-2">
-              <CopyIcon /> copy
+            <p className="text-gray-900 font-semibold text-sm">
+              PKT {amountToPay}
+            </p>
+            <Button
+              className="bg-transparent hover:bg-transparent text-gray-700 text-sm font-medium gap-2"
+              onClick={handleCopyAmountToPay}
+            >
+              {amountCopied ? (
+                <CheckIcon className="text-brand-400" />
+              ) : (
+                <CopyIcon />
+              )}
+              copy
             </Button>
           </div>
         </div>
@@ -70,9 +118,6 @@ const AccountDetails = (props: Props) => {
       {/* separator */}
       <div className="border-b-2 border-dashed border-gray-300"></div>
       <PaymentReceipt />
-      <Button className="bg-brand-500 hover:bg-brand-700 text-white hover:text-white py-4">
-        Confirm Payment
-      </Button>
     </div>
   );
 };

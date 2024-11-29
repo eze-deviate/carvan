@@ -2,9 +2,11 @@ import CircularProgress from "@/components/ui/circlar-progress";
 import Image from "next/image";
 import React from "react";
 
-type Props = {};
+type Props = {
+  showProgress?: boolean;
+};
 
-const CurrentlyReadingCard = (props: Props) => {
+const CurrentlyReadingCard = ({ showProgress = true }: Props) => {
   return (
     <div className="flex flex-col gap-2 h-full">
       <div className="w-full h-[79%]">
@@ -30,7 +32,7 @@ const CurrentlyReadingCard = (props: Props) => {
 
         {/* progress */}
 
-        <CircularProgress percent={40} />
+        {showProgress && <CircularProgress percent={40} />}
       </div>
     </div>
   );
