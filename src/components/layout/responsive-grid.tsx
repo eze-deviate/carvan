@@ -29,7 +29,7 @@ const ResponsiveGrid = ({
         </div>
       )}
 
-      <div className={cn("w-full flex flex-wrap gap-4", {})}>
+      <div className={cn("w-full flex flex-wrap gap-x-4 gap-y-4", {})}>
         {React.Children.map(
           children,
           (child, index) =>

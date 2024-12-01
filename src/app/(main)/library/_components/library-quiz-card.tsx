@@ -1,14 +1,14 @@
-import Image from "next/image";
 import React from "react";
+import { TQuiz } from "@/types";
+import Image from "next/image";
 import SourcedIcon from "@public/assets/svgs/sourced.svg";
 import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
-import { TQuiz } from "@/types";
 import { getAverageRating, getNumberOfReviews } from "@/lib/utils";
 type Props = {
   quiz: TQuiz;
 };
 
-const QuizListingCard = ({ quiz }: Props) => {
+const LibraryQuizCard = ({ quiz }: Props) => {
   const {
     title,
     cover,
@@ -23,14 +23,14 @@ const QuizListingCard = ({ quiz }: Props) => {
   } = quiz;
   const rating = getAverageRating(reviews);
   return (
-    <div className="flex flex-col w-full h-[21.75rem]">
+    <div className="flex flex-col h-[21.75rem]">
       <div className="overflow-hidden w-full h-[55.4%]">
         <Image
           className="w-full object-fill h-full"
           width={100}
           height={100}
-          src={cover}
-          alt={title}
+          src={"/assets/images/book-image.webp"}
+          alt={"title"}
         />
       </div>
       {/* QUIZ INFO */}
@@ -84,4 +84,4 @@ const QuizListingCard = ({ quiz }: Props) => {
   );
 };
 
-export default QuizListingCard;
+export default LibraryQuizCard;

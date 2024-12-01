@@ -22,3 +22,14 @@ export const QuestionType = {
 //   CART = "cart",
 //   WISHLIST = "wishlist",
 // }
+
+export enum BookFilterSortBy {
+  Title = "title",
+  Author = "author",
+}
+
+export enum BookFiltertype {
+  AllBooks = "allBooks",
+  Completed = "completed",
+  InProgress = "in-progress",
+}

@@ -16,6 +16,8 @@ import React, { useState } from "react";
 import BannerTop from "./_components/banner-top";
 import BannerBottom from "./_components/banner-bottom";
 import ResponsiveGrid from "@/components/layout/responsive-grid";
+import { cn } from "@/lib/utils";
+import { ui } from "@/constants";
 
 type Props = {};
 
@@ -66,13 +68,16 @@ const HomePage = (props: Props) => {
       </section>
       <CustomBanner title="Caravan Quizzes" className="h-[26.25rem] my-20" />
       <section className="flex flex-col gap-y-10">
-        <ResponsiveGrid className="max-w-full" title="Best Selling">
-          {quizzes.map((quiz, idx) => (
+        <ResponsiveGrid
+          className={cn("", ui.layoutPadding)}
+          title="Best Selling"
+        >
+          {quizzes.slice(0, 8).map((quiz, idx) => (
             <QuizListingCard quiz={quiz} key={idx} />
           ))}
         </ResponsiveGrid>
       </section>
-      <RateItem rating={rating} setRating={setRating} />
+      {/* <RateItem rating={rating} setRating={setRating} /> */}
 
       <Footer />
     </main>

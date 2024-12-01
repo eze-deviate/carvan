@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import LibraryTabsIcons from "./library-tabs-icons";
 import { LibraryTabs } from "@/constants/enums";
 import OverviewTab from "./overview-tab";
+import BookTab from "./book-tab";
+import QuizTab from "./quiz-tab";
 
 type Props = {};
 
@@ -14,7 +16,7 @@ const LibraryContent = (props: Props) => {
     LibraryTabs.activity
   );
   return (
-    <div className="flex flex-col gap-y-10">
+    <div className="flex flex-col gap-y-10 mt-10">
       <Tabs
         defaultValue={LibraryTabs.activity}
         className="w-full"
@@ -39,7 +41,10 @@ const LibraryContent = (props: Props) => {
           <OverviewTab />
         </TabsContent>
         <TabsContent value={LibraryTabs.books}>
-          Change your password here.
+          <BookTab />
+        </TabsContent>
+        <TabsContent value={LibraryTabs.quizzes}>
+          <QuizTab />
         </TabsContent>
       </Tabs>
     </div>
