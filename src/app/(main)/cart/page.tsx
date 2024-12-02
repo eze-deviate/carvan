@@ -76,8 +76,8 @@ const CartPage = () => {
           </h1>
 
           <ResponsiveGrid>
-            {books.slice(0, 4).map((book) => (
-              <BookListingCard book={book} />
+            {books.slice(0, 4).map((book, idx) => (
+              <BookListingCard book={book} key={idx} />
             ))}
           </ResponsiveGrid>
         </div>

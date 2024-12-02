@@ -36,8 +36,10 @@ const CustomSelect = ({
         )}
       </SelectTrigger>
       <SelectContent>
-        {selectItems.map((item) => (
-          <SelectItem value={item.value}>{item.label}</SelectItem>
+        {selectItems.map((item, idx) => (
+          <SelectItem value={item.value} key={idx}>
+            {item.label}
+          </SelectItem>
         ))}
       </SelectContent>
     </Select>

@@ -1,6 +1,7 @@
 import CopyLabel from "@/components/globals/copy-label";
 import OrderStatusBadge from "@/components/molecules/order-status-badge";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { CaretRightIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -55,7 +56,18 @@ const ProfileReviewItem = (props: Props) => {
           </p>
         </div>
 
-        <OrderStatusBadge />
+        <div className="flex gap-x-2">
+          <div
+            className={cn(
+              " w-fit rounded font-medium text-sm px-[0.25rem] py-[0.1875rem] bg-success-100 text-success-800  "
+            )}
+          >
+            Order Delivered
+          </div>
+          <p className="text-gray-700 text-sm">
+            &nbsp; on {format(new Date(2024, 3, 19), "EEEE, MMMM d, yyyy")}
+          </p>
+        </div>
       </div>
     </div>
   );
