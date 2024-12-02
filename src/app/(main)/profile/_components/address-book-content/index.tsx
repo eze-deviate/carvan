@@ -1,23 +1,31 @@
-import UpdatePersonalInfoModal from "@/components/modal/update-personal-info-modal";
 import React from "react";
-import PersonAttribute from "./person-attribute";
+
 import { CalendarIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import PersonAttribute from "@/components/molecules/person-attribute";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import UpdateDeliveryAddressModal from "@/components/modal/update-delivery-address-modal";
 // import TrashIcon from "@public/assets/svgs/trash.svg";
 
 type Props = {};
 
-const AccountContent = (props: Props) => {
+const AddressBookContent = (props: Props) => {
   return (
     <div className="flex flex-col gap-y-6 w-[80%] ">
-      <h1 className="text-3xl font-semibold  text-gray-900">My Account</h1>
+      <h1 className="text-3xl font-semibold  text-gray-900">Address Book</h1>
       <div className="flex flex-col gap-y-8">
         {/* heading */}
         <div className="justify-between flex items-center px-4 py-[0.875rem] bg-brand-50 border border-brand-100 rounded">
           <h4 className="text-[#2F313F] text-xl font-medium">
-            Personal Information
+            Delivery Address
           </h4>
-          <UpdatePersonalInfoModal />
+          <UpdateDeliveryAddressModal />
         </div>
         {/* attributes */}
         <div className="w-full flex flex-col gap-y-5">
@@ -30,15 +38,19 @@ const AccountContent = (props: Props) => {
             <PersonAttribute label="Phone Number" value="913-4784-8585" />
           </div>
           <div className="flex w-full gap-x-6">
+            <PersonAttribute label="Province/State" value="Alaska" />
+          </div>
+          <div className="flex w-full gap-x-6">
+            <PersonAttribute label="District" value="Alaska" />
+            <PersonAttribute label="City/Town" value="Alaska" />
+          </div>
+          <div className="flex w-full gap-x-6">
+            <PersonAttribute label="Delivery Address" value="Alaska" />
+          </div>
+          <div className="flex w-full gap-x-6">
             <PersonAttribute
-              label="Birth Date"
-              value={
-                <div className="flex gap-x-2">
-                  <CalendarIcon />
-                  <span>{111111111}</span>
-                </div>
-              }
-              className="w-[50%] flex-grow-0"
+              label="Additional Information Address"
+              value="Alaska"
             />
           </div>
         </div>
@@ -55,4 +67,4 @@ const AccountContent = (props: Props) => {
   );
 };
 
-export default AccountContent;
+export default AddressBookContent;

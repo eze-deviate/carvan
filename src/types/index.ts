@@ -43,6 +43,18 @@ export const UpdatePersonalInfoFormSchema = z.object({
   // DateOfBirth:z.string()
 });
 
+export const UpDateDeliveryAddressFormSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  phoneNumber: z.string(),
+  alternativePhoneNumber: z.string(),
+  province: z.string(),
+  district: z.string(),
+  city: z.string(),
+  deliveryAddress: z.string(),
+  additionalInfo: z.string().optional(),
+});
+
 export type ActivityOverview =
   | "Today"
   | "Last 7 days"

@@ -22,9 +22,10 @@ import { Form } from "../ui/form";
 import CheckoutAddressFields from "../forms/checkout-address-fields";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import UpdatePersonalInfoForm from "../forms/update-personal-info-form";
+import UpDateDeliveryAddressForm from "../forms/update-delivery-address-form";
 type Props = {};
 
-const UpdatePersonalInfoModal = (props: Props) => {
+const UpdateDeliveryAddressModal = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const form = useForm<z.infer<typeof UpdatePersonalInfoFormSchema>>({
     resolver: zodResolver(UpdatePersonalInfoFormSchema),
@@ -54,12 +55,12 @@ const UpdatePersonalInfoModal = (props: Props) => {
         </DialogClose>
         <DialogHeader>
           <DialogTitle className="text-2xl text-gray-800 font-semibold">
-            Update Personal Info
+            Edit Delivery Address
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form>
-            <UpdatePersonalInfoForm setIsOpen={setIsOpen} />
+            <UpDateDeliveryAddressForm setIsOpen={setIsOpen} />
           </form>
         </Form>
       </DialogContent>
@@ -67,4 +68,4 @@ const UpdatePersonalInfoModal = (props: Props) => {
   );
 };
 
-export default UpdatePersonalInfoModal;
+export default UpdateDeliveryAddressModal;

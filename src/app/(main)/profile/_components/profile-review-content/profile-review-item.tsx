@@ -7,7 +7,7 @@ import Image from "next/image";
 
 type Props = {};
 
-const OrderItem = (props: Props) => {
+const ProfileReviewItem = (props: Props) => {
   return (
     <div className="flex gap-x-4 border-gray-200 bg-gray-50 rounded p-3 items-start ">
       <div className="w-[13.666%] h-full">
@@ -44,26 +44,14 @@ const OrderItem = (props: Props) => {
             {/* author */}
             <span className="text-gray-700 text-sm">By Olivia Crown</span>
           </div>
-          <Button
-            variant="transparent"
-            className="gap-1 text-brand-500 text-base"
-          >
-            View Order <CaretRightIcon />
+          <Button variant="outline" className="gap-1 text-base">
+            Review Product <CaretRightIcon />
           </Button>
         </div>
 
         <div className="flex gap-x-12 text-gray-700 text-sm">
-          <p className="capitalize">
-            QTY:{" "}
-            <span className="text-gray-900 text-base font-semibold">X1</span>
-          </p>
-          <p className="capitalize">
-            Price:{" "}
-            <span className="text-gray-900 text-base font-semibold">{`$10.00`}</span>
-          </p>
-          <p className="capitalize">
-            Total Price:{" "}
-            <span className="text-gray-900 text-base font-semibold">{`$11.00`}</span>
+          <p className="capitalize text-gray-900 text-base font-semibold">
+            {`$10.00`}
           </p>
         </div>
 
@@ -73,4 +61,4 @@ const OrderItem = (props: Props) => {
   );
 };
 
-export default OrderItem;
+export default ProfileReviewItem;
