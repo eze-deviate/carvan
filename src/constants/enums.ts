@@ -33,3 +33,11 @@ export enum BookFiltertype {
   Completed = "completed",
   InProgress = "in-progress",
 }
+
+export enum MyOrdersTabs {
+  AllOrders = "all orders",
+  ToBeReceived = "to be received",
+  Delivered = "delivered",
+  AccessApproved = "access-approved",
+  Cancelled = "cancelled",
+}

@@ -162,3 +162,5 @@ export type TCartItem = {
   item: BookType | TQuiz;
   qty: number;
 };
+
+export type TWishlistTab = "books" | "quizzes";

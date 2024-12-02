@@ -8,6 +8,7 @@ import { LibraryTabs } from "@/constants/enums";
 import OverviewTab from "./overview-tab";
 import BookTab from "./book-tab";
 import QuizTab from "./quiz-tab";
+import WishlistTab from "./wishlist/wishlist-tab";
 
 type Props = {};
 
@@ -45,6 +46,9 @@ const LibraryContent = (props: Props) => {
         </TabsContent>
         <TabsContent value={LibraryTabs.quizzes}>
           <QuizTab />
+        </TabsContent>
+        <TabsContent value={LibraryTabs.wishlist}>
+          <WishlistTab />
         </TabsContent>
       </Tabs>
     </div>

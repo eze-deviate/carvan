@@ -1,6 +1,11 @@
 import { faker } from "@faker-js/faker";
-import { LibraryTabs } from "./enums";
-import { ActivityOverview, TProfileMenu, TQuizMode } from "@/types";
+import { LibraryTabs, MyOrdersTabs } from "./enums";
+import {
+  ActivityOverview,
+  TProfileMenu,
+  TQuizMode,
+  TWishlistTab,
+} from "@/types";
 export const navItems = [
   {
     text: "Home",
@@ -50,6 +55,11 @@ export const libraryTabs = [
   { value: LibraryTabs.quizzes, text: "Quizzes" },
   { value: LibraryTabs.wishlist, text: "Wishlist" },
 ];
+
+export const wishlistTabs = [
+  { value: "books" as TWishlistTab, text: "Books" },
+  { value: "quizzes" as TWishlistTab, text: "Quizzes" },
+];
 export const quizModeTabs: { value: TQuizMode; text: string }[] = [
   { value: "study", text: "Study Mode" },
   { value: "exam", text: "Exam Mode" },
@@ -81,4 +91,12 @@ export const reportCheckBoxes = [
   { id: "spellingOrGrammar", label: "The Spelling or grammar are incorrect" },
   { id: "imageIssue", label: "The image used have an issue" },
   { id: "others", label: "Others" },
+];
+
+export const myOrdersTabs = [
+  { value: MyOrdersTabs.AllOrders, text: "All Orders" },
+  { value: MyOrdersTabs.ToBeReceived, text: "To Be Received" },
+  { value: MyOrdersTabs.Delivered, text: "Delivered" },
+  { value: MyOrdersTabs.AccessApproved, text: "Access Approved" },
+  { value: MyOrdersTabs.Cancelled, text: "Cancelled" },
 ];

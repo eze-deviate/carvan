@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import HardCopyIcon from "@public/assets/svgs/hard-copy.svg";
-
-type Props = React.HTMLAttributes<HTMLDivElement> & {};
+import ECopy from "@public/assets/svgs/e-copy.svg";
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  icon?: "hard" | "soft";
+};
 
 const CopyLabel = (props: Props) => {
-  const { className, ...rest } = props;
+  const { className, icon = "hard", ...rest } = props;
   return (
     <div
       className={cn(
@@ -14,7 +16,8 @@ const CopyLabel = (props: Props) => {
       )}
       {...rest}
     >
-      <HardCopyIcon />
+      {icon == "hard" && <HardCopyIcon />}
+      {icon == "soft" && <ECopy />}
       <span className="text-gray-800 font-medium text-xs">Hard Copy</span>
     </div>
   );

@@ -11,9 +11,10 @@ import { Button } from "../ui/button";
 type Props = {
   className?: string;
   book: BookType;
+  showFav?: boolean;
 };
 
-const BookListingCard = ({ className, book }: Props) => {
+const BookListingCard = ({ className, book, showFav }: Props) => {
   const router = useRouter();
   const { author, price, title, image, reviews } = book;
   const rating = getAverageRating(reviews);
@@ -36,7 +37,7 @@ const BookListingCard = ({ className, book }: Props) => {
           src={image}
           alt={title}
         />
-        {hovered && (
+        {(hovered || showFav) && (
           <>
             <FavoriteButton
               className="absolute right-3 top-3 z-10"

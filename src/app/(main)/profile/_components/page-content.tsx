@@ -9,7 +9,7 @@ type Props = {};
 const PageContent = (props: Props) => {
   const [active, setActive] = useState<TprofileMenuIcon>("account");
   return (
-    <div className="border-t border-gray-300 w-full flex gap-[3.875rem] mt-10">
+    <div className="border-t border-gray-300 w-full flex gap-[3.875rem]">
       {/* Menus */}
       <ProfileMenu active={active} setActive={setActive} />
       {/* content */}

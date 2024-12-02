@@ -55,8 +55,8 @@ const SecurityContent = (props: Props) => {
       <Form {...form}>
         <form>
           <div className="flex flex-col gap-y-12">
-            <div className="flex flex-col gap-y-8">
-              <div>
+            <div className="flex flex-col gap-y-8 w-[80%]">
+              <div className="flex flex-col gap-y-3">
                 <CustomField
                   className="flex-1"
                   control={form.control}
@@ -75,7 +75,48 @@ const SecurityContent = (props: Props) => {
                   }}
                   iconClassName="cursor-pointer"
                 />
+                <p className="text-brand-500 text-sm cursor-pointer">
+                  Forgot your Password?
+                </p>
               </div>
+
+              <CustomField
+                className="flex-1"
+                control={form.control}
+                name="newPassword"
+                formLabel="New Password"
+                render={({ field }) => (
+                  <CustomInput
+                    {...field}
+                    type={passwordVisible ? "text" : "password"}
+                  />
+                )}
+                schema={changePasswordSchema}
+                icon={passwordVisible ? <EyeOpenIcon /> : <EyeNoneIcon />}
+                iconClick={() => {
+                  handlePasswordVisible("newPassword");
+                }}
+                iconClassName="cursor-pointer"
+              />
+
+              <CustomField
+                className="flex-1"
+                control={form.control}
+                name="confirmPassword"
+                formLabel="Confirm Password"
+                render={({ field }) => (
+                  <CustomInput
+                    {...field}
+                    type={passwordVisible ? "text" : "password"}
+                  />
+                )}
+                schema={changePasswordSchema}
+                icon={passwordVisible ? <EyeOpenIcon /> : <EyeNoneIcon />}
+                iconClick={() => {
+                  handlePasswordVisible("newPassword");
+                }}
+                iconClassName="cursor-pointer"
+              />
             </div>
 
             <div className="flex justify-center items-center">

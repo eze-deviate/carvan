@@ -1,7 +1,7 @@
 import { TprofileMenuIcon } from "@/types";
 import AccountContent from "./account/account-content";
 import AddressBookContent from "./address-book-content";
-import MyOrdersContent from "./my-orders-content";
+import MyOrdersContent from "./order/my-orders-content";
 import ReviewsContent from "./reviews-content";
 import WishlistContent from "./wishlist-content";
 import SecurityContent from "./security/security-content";
