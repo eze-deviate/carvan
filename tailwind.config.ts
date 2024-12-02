@@ -19,8 +19,10 @@ const config: Config = {
         "favorite-red": "#FF0000",
         "hover-shade": "",
         success: {
+          100: "#D1FADF",
           600: "#039855",
           500: "#12B76A",
+          800: "#05603A",
         },
         banner: "#F4F4F5",
         brand: {

@@ -13,8 +13,8 @@ const WishlistBooks = (props: Props) => {
     <div>
       {wishlistBooks.length > 0 ? (
         <ResponsiveGrid>
-          {wishlistBooks.map((book) => (
-            <BookListingCard book={book.resource} showFav />
+          {wishlistBooks.map((book, idx) => (
+            <BookListingCard book={book.resource} showFav key={idx} />
           ))}
         </ResponsiveGrid>
       ) : (

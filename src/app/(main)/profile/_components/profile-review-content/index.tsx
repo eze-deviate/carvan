@@ -10,8 +10,8 @@ const ProfileReviewContent = (props: Props) => {
       <div className="flex flex-col gap-y-6">
         {Array(8)
           .fill(0)
-          .map((product) => (
-            <ProfileReviewItem />
+          .map((product, idx) => (
+            <ProfileReviewItem key={idx} />
           ))}
       </div>
     </div>
